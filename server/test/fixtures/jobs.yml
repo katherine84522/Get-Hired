@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  applied: false
+  saved: false
+  user_id: 1
+  connection_id: 1
+  applied_date: 2023-02-04
+  link: MyString
+  company: MyString
+  job_title: MyString
+
+two:
+  applied: false
+  saved: false
+  user_id: 1
+  connection_id: 1
+  applied_date: 2023-02-04
+  link: MyString
+  company: MyString
+  job_title: MyString

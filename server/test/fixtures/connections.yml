@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  recruiter: false
+  name: MyString
+  company: MyString
+  user_id: 1
+
+two:
+  recruiter: false
+  name: MyString
+  company: MyString
+  user_id: 1
