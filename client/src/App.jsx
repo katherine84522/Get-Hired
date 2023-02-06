@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter as Router } from "react-router-dom";
 import LoggedIn from "./LoggedIn";
@@ -19,12 +19,12 @@ const App = () => {
     });
   }, []);
 
-  if (!isAuthenticated) {
-    return <div></div>;
-  }
+  // if (!isAuthenticated) {
+  //   return <div><h2>Not Authenticated</h2></div>;
+  // }
   return (
     <div className="app">
-      <Router>{isAuthenticated ? <LoggedIn /> : <LoggedOut />}</Router>
+      <Router>{isAuthenticated ? <LoggedIn setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />}</Router>
     </div>
   );
 };

@@ -38,4 +38,8 @@ Rails.application.routes.draw do
   post '/login', to: "sessions#create"
   delete '/logout', to: "sessions#destroy"
 
+  get '/statistics', to: "statistics#index"
+  post '/statistics', to: "statistics#create"
+  delete '/statistics', to: "statistics#destroy_all"
+
 end               

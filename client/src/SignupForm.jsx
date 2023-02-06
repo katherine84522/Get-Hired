@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-const SignupForm = () => {
+const SignupForm = ({ setCurrentUser, setIsAuthenticated }) => {
+
+    const navigate = useNavigate()
+
     const [formData, setFormData] = useState({
         username: "",
         password: "",
         email: "",
+        subscribed: true
     });
 
     const handleChange = (e) => {
@@ -18,7 +23,7 @@ const SignupForm = () => {
 
         const userCreds = { ...formData };
 
-        fetch("/users", {
+        fetch("http://127.0.0.1:3000/users", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,6 +33,8 @@ const SignupForm = () => {
             if (res.ok) {
                 res.json().then((user) => {
                     setCurrentUser(user);
+                    setIsAuthenticated(true)
+                    navigate('/')
                 });
             } else {
                 res.json().then((errors) => {
@@ -38,7 +45,7 @@ const SignupForm = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{}}>
             <label htmlFor="username">Username:</label>
             <input
                 id="username-signup-input"
@@ -47,6 +54,7 @@ const SignupForm = () => {
                 value={formData.username}
                 onChange={handleChange}
             />
+            <br />
             <label htmlFor="email">Email:</label>
             <input
                 id="email-signup-input"
@@ -55,6 +63,7 @@ const SignupForm = () => {
                 value={formData.email}
                 onChange={handleChange}
             />
+            <br />
             <label htmlFor="password">Password:</label>
             <input
                 id="password-signup-input"
@@ -63,6 +72,15 @@ const SignupForm = () => {
                 value={formData.password}
                 onChange={handleChange}
             />
+            <br />
+            <label>Sign up for daily notifications</label>
+            <input
+                type="checkbox"
+                name="subscribed"
+                checked={formData.subscribed}
+                onChange={handleChange}
+            />
+            <br />
             <button type="submit">Submit</button>
         </form>
     );
