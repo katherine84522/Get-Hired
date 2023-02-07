@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux"
 import { changeValue } from './features/posting'
 import { useEffect } from 'react'
 
-export default function PostingCard({ posting, isAuthenticated }) {
+export default function PostingCard({ posting, isAuthenticated, currentUser }) {
 
     const dispatch = useDispatch()
 

@@ -24,7 +24,7 @@ const App = () => {
   // }
   return (
     <div className="app">
-      <Router>{isAuthenticated ? <LoggedIn setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />}</Router>
+      <Router>{isAuthenticated ? <LoggedIn currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />}</Router>
     </div>
   );
 };

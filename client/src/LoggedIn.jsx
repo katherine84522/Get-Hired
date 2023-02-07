@@ -5,12 +5,12 @@ import MyJobs from './MyJobs'
 import Connections from './Connections'
 import Interviews from './Interviews'
 
-export default function LoggedIn({ setIsAuthenticated, isAuthenticated }) {
+export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentUser }) {
     return (
         <div style={{ display: 'flex' }}>
-            <LoggedInNav setIsAuthenticated={setIsAuthenticated} />
+            <LoggedInNav setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />
             <Routes>
-                <Route path="/" element={<AllJobs isAuthenticated={isAuthenticated} />} />
+                <Route path="/" element={<AllJobs isAuthenticated={isAuthenticated} currentUser={currentUser} />} />
                 <Route path="/myjobs" element={<MyJobs />} />
                 <Route path="/connections" element={<Connections />} />
                 <Route path="/interviews" element={<Interviews />} />

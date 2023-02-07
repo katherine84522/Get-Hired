@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import PostingCard from './PostingCard'
 
 
-export default function AllJobs({ isAuthenticated }) {
+export default function AllJobs({ isAuthenticated, currentUser }) {
 
     const [postings, setPostings] = useState([])
 
@@ -23,7 +23,7 @@ export default function AllJobs({ isAuthenticated }) {
                 {
                     postings.map((posting) => {
                         return (
-                            < PostingCard posting={posting} isAuthenticated={isAuthenticated} />
+                            < PostingCard posting={posting} isAuthenticated={isAuthenticated} currentUser={currentUser} />
                         )
                     })
 

@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
 
-export default function LoggedInNav({ setIsAuthenticated }) {
+export default function LoggedInNav({ setIsAuthenticated, currentUser }) {
 
     const navigate = useNavigate()
 
@@ -11,6 +11,7 @@ export default function LoggedInNav({ setIsAuthenticated }) {
 
     return (
         <div>
+            <p>Good luck to you! {currentUser.username}</p>
             <NavLink to='/'>All Jobs</NavLink>
             <br />
             <NavLink to='/myjobs'>My Jobs</NavLink>

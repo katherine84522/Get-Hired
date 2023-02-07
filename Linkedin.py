@@ -148,15 +148,15 @@ driver.quit()
 
 
 # Input the email account that will send the email and who will receiving it
-sender = import.meta.env.EMAIL
-receiver = import.meta.env.EMAIL
+# sender = import.meta.env.EMAIL
+# receiver = import.meta.env.EMAIL
 
-# Creates the Message, Subject line, From and To
-msg = MIMEMultipart()
-msg['Subject'] = 'New Jobs Today on HIRED'
-msg['From'] = sender
-msg['To'] = ','.join(receiver)
-s = smtplib.SMTP_SSL(host='smtp.gmail.com', port=465)
-s.login(user=import.meta.env.EMAIL, password=import.meta.env.PASSWORD)
-s.sendmail(sender, receiver, msg.as_string())
-s.quit()
+# # Creates the Message, Subject line, From and To
+# msg = MIMEMultipart()
+# msg['Subject'] = 'New Jobs Today on HIRED'
+# msg['From'] = sender
+# msg['To'] = ','.join(receiver)
+# s = smtplib.SMTP_SSL(host='smtp.gmail.com', port=465)
+# s.login(user=import.meta.env.EMAIL, password=import.meta.env.PASSWORD)
+# s.sendmail(sender, receiver, msg.as_string())
+# s.quit()
