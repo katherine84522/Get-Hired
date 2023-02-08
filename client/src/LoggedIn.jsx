@@ -11,7 +11,7 @@ export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentU
             <LoggedInNav setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />
             <Routes>
                 <Route path="/" element={<AllJobs isAuthenticated={isAuthenticated} currentUser={currentUser} />} />
-                <Route path="/myjobs" element={<MyJobs />} />
+                <Route path="/myjobs" element={<MyJobs currentUser={currentUser} />} />
                 <Route path="/connections" element={<Connections />} />
                 <Route path="/interviews" element={<Interviews />} />
             </Routes>

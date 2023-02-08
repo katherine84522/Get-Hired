@@ -23,7 +23,7 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
                 {
                     postings.map((posting) => {
                         return (
-                            < PostingCard posting={posting} isAuthenticated={isAuthenticated} currentUser={currentUser} />
+                            < PostingCard posting={posting} isAuthenticated={isAuthenticated} currentUser={currentUser} setPostings={setPostings} />
                         )
                     })
 

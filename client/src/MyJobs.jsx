@@ -1,11 +1,49 @@
+import { useEffect, useState } from 'react'
+
+
+import SavedJobCard from './SavedJobCard'
+import AppliedJobCard from './AppliedJobCard'
+
+export default function MyJobs({ currentUser }) {
+
+    const [savedJobs, setSavedJobs] = useState([])
+    const [appliedJobs, setAppliedJobs] = useState([])
+    const [saved, setSaved] = useState(true)
+
+    useEffect(() => {
+        const request = async () => {
+            let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/jobs`)
+            let res = await req.json()
+            const filterSaved = res.filter(job => { return job.saved === true })
+            setSavedJobs(filterSaved)
+            const filterApplied = res.filter(job => { return job.applied === true })
+            setAppliedJobs(filterApplied)
+        }
+        request()
+    }, [])
 
 
 
-export default function MyJobs() {
+
     return (
         <div>
-            <button>Saved</button>
-            <button>Applied</button>
+            <button onClick={() => { setSaved(true) }}>Saved</button>
+            <button onClick={() => { setSaved(false) }}>Applied</button>
+            {saved ? (
+                savedJobs.map((job) => {
+                    return (
+                        < SavedJobCard job={job} currentUser={currentUser} setSavedJobs={setSavedJobs} />
+                    )
+                })
+            ) : (
+                appliedJobs.map((job) => {
+                    return (
+                        < AppliedJobCard job={job} currentUser={currentUser} />
+                    )
+                })
+            )
+            }
+
         </div>
     )
 }

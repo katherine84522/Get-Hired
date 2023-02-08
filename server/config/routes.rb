@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post "/postings", to: "postings#create"
   delete "/postings", to: "postings#destroy_all"
   delete "/postings/:id", to: "postings#destroy"
+  patch "/postings/:id", to: "postings#update"
 
   get "/jobs", to: "jobs#index"
   get "/jobs/:id", to: "jobs#show"

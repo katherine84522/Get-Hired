@@ -27,6 +27,21 @@ driver = Chrome(chrome_options=opts)
 # Loop will only end when there are no more pages to go through
 driver.get('https://www.indeed.com/jobs?q=software+engineer+%24110%2C000&l=United+States&sc=0kf%3Aexplvl%28ENTRY_LEVEL%29%3B&fromage=14&vjk=f6c220ac6b9317ae')
 
+# signInButton = driver.find_element(
+#     By.XPATH, '//*[@id="gnav-main-container"]/div/div/div[2]/div[2]/div[2]/a').click()
+# inputEmail = driver.find_element(By.XPATH, '//*[@id="ifl-InputFormField-3"]')
+# inputEmail.sendKeys('ytsai1@saintpeters.edu')
+# continueBtn = driver.find_element(
+#     By.XPATH, '//*[@id="emailform"]/button').click()
+# time.sleep(2)
+# passwordClick = driver.find_element(
+#     By.XPATH, '//*[@id="auth-page-google-password-fallback"]')
+
+# passwordInput = driver.find_element(
+#     By.XPATH, '//*[@id="ifl-InputFormField-131"]')
+# passwordInput.sendKeys('')
+
+
 time.sleep(3)
 # Imports the HTML of the current page into python
 soup = BeautifulSoup(driver.page_source, 'lxml')
