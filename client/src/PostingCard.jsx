@@ -63,11 +63,12 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
                 applied: true,
                 saved: false,
                 user_id: currentUser.id,
-                connection_id: null,
                 applied_date: appliedDate,
                 link: posting.link,
                 company: posting.company,
                 job_title: posting.job_title,
+                referred: false,
+                interview: false
             })
         });
         let res3 = await req3.json()
@@ -113,7 +114,9 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
                 link: posting.link,
                 company: posting.company,
                 job_title: posting.job_title,
-                location: posting.location
+                location: posting.location,
+                referred: false,
+                interview: false
             })
         });
         let res3 = await req3.json()

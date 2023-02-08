@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   post "/jobs", to: "jobs#create"
   patch "/jobs/:id", to: "jobs#update"
   patch "/jobs/:id/connection", to: "jobs#update_connection"
+  patch "/jobs/:id/referral", to: "jobs#update_referral"
+  patch "/jobs/:id/interview", to: "jobs#update_interview"
   delete "/jobs/:id", to: "jobs#destroy"      
 
   get "/users", to: "users#index"

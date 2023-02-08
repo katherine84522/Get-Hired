@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_150822) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_222401) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -37,20 +37,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_150822) do
     t.boolean "completed"
     t.boolean "virtual"
     t.string "address"
+    t.time "time"
   end
 
   create_table "jobs", force: :cascade do |t|
     t.boolean "applied"
     t.boolean "saved"
     t.integer "user_id"
-    t.integer "connection_id", optional: true
-    t.date "applied_date", optional: true
+    t.integer "connection_id"
+    t.date "applied_date"
     t.string "link"
     t.string "company"
     t.string "job_title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "location"
+    t.boolean "referred"
+    t.boolean "interview"
   end
 
   create_table "postings", force: :cascade do |t|

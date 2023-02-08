@@ -18,8 +18,9 @@ export default function MyJobs({ currentUser }) {
             let res = await req.json()
             const filterSaved = res.filter(job => { return job.saved === true })
             setSavedJobs(filterSaved)
-            const filterApplied = res.filter(job => { return job.applied === true })
+            const filterApplied = res.filter(job => { return job.applied === true && !job.interview })
             setAppliedJobs(filterApplied)
+            console.log(filterApplied)
             // console.log(savedJobs)
         }
         request()
@@ -41,7 +42,7 @@ export default function MyJobs({ currentUser }) {
             ) : (
                 appliedJobs.map((job) => {
                     return (
-                        < AppliedJobCard job={job} currentUser={currentUser} />
+                        < AppliedJobCard job={job} currentUser={currentUser} setAppliedJobs={setAppliedJobs} />
                     )
                 })
             )

@@ -10,7 +10,7 @@ class InterviewsController < ApplicationController
     end
 
     def create
-        interview = Interview.create(date: params[:date], round: params[:round], user_id: params[:user_id], job_id: params[:job_id], emailed:params[:emailed], completed: params[:completed], virtual:params[:virtual], address:params[:address])
+        interview = Interview.create(date: params[:date], round: params[:round], user_id: params[:user_id], job_id: params[:job_id], emailed:params[:emailed], completed: params[:completed], virtual:params[:virtual], address:params[:address], time: params[:time])
         render json: interview
     end
 

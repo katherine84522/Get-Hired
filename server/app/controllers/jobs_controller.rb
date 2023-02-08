@@ -10,7 +10,7 @@ class JobsController < ApplicationController
     end
 
     def create
-        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location])
+        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location], referred: params[:referred], interview: params[:interview])
         render json: job
     end
 
@@ -29,6 +29,18 @@ class JobsController < ApplicationController
     def update_connection
         job = Job.find_by(id: params[:id])
         job.update(connection_id: params[:connection_id])
+        render json: job
+    end
+
+    def update_referral
+        job = Job.find_by(id: params[:id])
+        job.update(referred: params[:referred])
+        render json: job
+    end
+
+    def update_interview
+        job = Job.find_by(id: params[:id])
+        job.update(interview: params[:interview])
         render json: job
     end
 end
