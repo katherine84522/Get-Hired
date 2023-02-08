@@ -10,7 +10,7 @@ class ConnectionsController < ApplicationController
     end
 
     def create
-        connection = Connection.create(recruiter: params[:recruiter], name: params[:name], company:params[:company], user_id: params[:user_id])
+        connection = Connection.create(recruiter: params[:recruiter], name: params[:name], company:params[:company], user_id: params[:user_id], contact: params[:contact], link: params[:link], position: params[:position])
         render json: connection
     end
 

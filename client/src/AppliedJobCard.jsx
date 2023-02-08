@@ -8,10 +8,7 @@ export default function AppliedJobCard({ job }) {
     const handleRefer = () => {
         setShowRefer(!showRefer)
     }
-
-    // const handleChange = (e) => {
-    //     setUrl(e.target.value)
-    // }
+    ``
 
     // const handleSubmit = async (e) => {
     //     e.preventDefault()
@@ -24,10 +21,14 @@ export default function AppliedJobCard({ job }) {
             <h2>{job.job_title}</h2>
             <h3>{job.company}</h3>
             <h3>Applied on {job.applied_date}</h3>
-            <p onClick={() => { handleRefer() }}>referred</p>
-            {showRefer &&
-                <div>Choose a connection:</div>
+            {job.connection !== null &&
+                <div>
+                    <p>Connection: {job.connection.name}</p>
+                    <p>not yet referred</p>
+                    <button onClick={() => { handleRefer() }}>Update</button>
+                </div>
             }
+
         </div>
     )
 }

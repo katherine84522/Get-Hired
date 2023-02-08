@@ -97,7 +97,7 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
             return !posting.deleted.includes(currentUser.id);
         });
         setPostings(filteredPostings)
-        console.log(filteredPostings)
+        // console.log(filteredPostings)
 
 
 
@@ -110,8 +110,6 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
                 applied: false,
                 saved: true,
                 user_id: currentUser.id,
-                connection_id: null,
-                applied_date: null,
                 link: posting.link,
                 company: posting.company,
                 job_title: posting.job_title,
@@ -139,8 +137,8 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
             </div>
             {isAuthenticated &&
                 <div>
-                    <button onClick={() => { setShowDate(true) }}>Applied</button>
-                    <button onClick={() => { handleSave() }}>Save</button>
+                    <p onClick={() => { setShowDate(!showDate) }}>Applied</p>
+                    <p onClick={() => { handleSave() }}>Save</p>
                 </div>
             }
             {showDate &&

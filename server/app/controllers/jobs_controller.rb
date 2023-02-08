@@ -5,12 +5,12 @@ class JobsController < ApplicationController
     end
 
     def show
-        job = Job.find(id:params[:id])
+        job = Job.find_by(id:params[:id])
         render json: job
     end
 
     def create
-        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], connection_id:params[:connection_id], applied_date: params[:applied_date], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location])
+        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location])
         render json: job
     end
 
@@ -24,5 +24,11 @@ class JobsController < ApplicationController
         job = Job.find_by(id: params[:id])
         job.destroy
         render json: job 
+    end
+
+    def update_connection
+        job = Job.find_by(id: params[:id])
+        job.update(connection_id: params[:connection_id])
+        render json: job
     end
 end

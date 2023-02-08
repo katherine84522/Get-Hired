@@ -9,6 +9,8 @@ export default function MyJobs({ currentUser }) {
     const [savedJobs, setSavedJobs] = useState([])
     const [appliedJobs, setAppliedJobs] = useState([])
     const [saved, setSaved] = useState(true)
+    const [referralAdded, setReferralAdded] = useState(false)
+
 
     useEffect(() => {
         const request = async () => {
@@ -18,6 +20,7 @@ export default function MyJobs({ currentUser }) {
             setSavedJobs(filterSaved)
             const filterApplied = res.filter(job => { return job.applied === true })
             setAppliedJobs(filterApplied)
+            // console.log(savedJobs)
         }
         request()
     }, [])
@@ -32,7 +35,7 @@ export default function MyJobs({ currentUser }) {
             {saved ? (
                 savedJobs.map((job) => {
                     return (
-                        < SavedJobCard job={job} currentUser={currentUser} setSavedJobs={setSavedJobs} />
+                        < SavedJobCard job={job} currentUser={currentUser} setSavedJobs={setSavedJobs} setReferralAdded={setReferralAdded} referralAdded={referralAdded} setAppliedJobs={setAppliedJobs} />
                     )
                 })
             ) : (
