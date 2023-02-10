@@ -19,8 +19,32 @@ export default function ConnectionCard({ connection, setConnections, setRecruite
             <p>{connection.company}</p>
             <p>{connection.position}</p>
             <p>Contact Info: {connection.contact}</p>
-            <a href={connection.link}>Linkedin Profile</a>
-            <button onClick={() => { handleDelete() }}>Delete Connection</button>
+            {connection.link &&
+                <>
+                    <a href={connection.link}>Linkedin Profile</a><br />
+                </>
+            }
+            {connection.jobs && (
+                <div>
+                    {connection.jobs.some(job => job.referred) && (
+                        <p>Referral: </p>
+                    )}
+                    {connection.jobs
+                        .filter(job => job.referred)
+                        .map((job) => (
+                            <p>{job.job_title} at {job.company}</p>
+                        ))}
+                    {connection.jobs.some(job => !job.referred) && (
+                        <p>Potential Referral: </p>
+                    )}
+                    {connection.jobs
+                        .filter(job => !job.referred)
+                        .map((job) => (
+                            <p>{job.job_title} at {job.company}</p>
+                        ))}
+                </div>
+            )}
+            <br /><button onClick={() => { handleDelete() }}>Delete Connection</button>
         </div>
     )
 }

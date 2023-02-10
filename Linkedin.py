@@ -43,9 +43,9 @@ print('devision:', scrolls)
 print('round up:', rounded_up_scrolls)
 print(type(rounded_up_scrolls))
 
-r = requests.delete("http://127.0.0.1:3000/postings", data={'key': 'value'})
-print(r)
-print(r.json())
+# r = requests.delete("http://127.0.0.1:3000/postings", data={'key': 'value'})
+# print(r)
+# print(r.json())
 
 i = 2
 while i <= rounded_up_scrolls:

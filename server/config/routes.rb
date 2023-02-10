@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   get "/connections", to: "connections#index"
   get "/connections/:id", to: "connections#show"
   post "/connections", to: "connections#create"
+  post "/connections_manual", to: "connections#create_manual"
   patch "/connections/:id", to: "connections#update"
   delete "/connections/:id", to: "connections#destroy"
 

@@ -1,10 +1,40 @@
+import { useState, useEffect } from 'react'
+import InterviewCard from './InterviewCard'
 
+export default function Interviews({ currentUser }) {
 
-export default function Interviews() {
+    const [interviews, setInterviews] = useState([])
+    const [completed, setCompleted] = useState(false)
+
+    useEffect(() => {
+        const request = async () => {
+            let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/interviews`)
+            let res = await req.json()
+            setInterviews(res)
+            console.log(interviews)
+        }
+        request()
+    }, [])
+
+    const scheduledInterviews = interviews.filter(interview => { return !interview.completed })
+    const completedInterviews = interviews.filter(interview => { return interview.completed })
+
     return (
         <div>
-            <button>Scheduled</button>
-            <button>Past</button>
-        </div>
+            <div>
+                <button onClick={() => { setCompleted(false) }}>Scheduled</button>
+                <button onClick={() => { setCompleted(true) }}>Past</button>
+            </div>
+            <div>
+                {
+                    (completed ? (completedInterviews) : (scheduledInterviews)).map((interview) => {
+                        return (
+                            < InterviewCard interview={interview} setInterviews={setInterviews} currentUser={currentUser} interviews={interviews} />
+                        )
+                    })
+                }
+            </div>
+        </div >
     )
 }
+

@@ -47,18 +47,19 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
         let value = e.target.value;
         let hours = value.substr(0, 2);
         let minutes = value.substr(3, 2);
-        let period = value.substr(6, 2);
 
         if (hours === "12") {
             hours = "00";
         }
-        if (period === "PM" && hours !== "12") {
+        if (value.indexOf("PM") !== -1 && hours !== "12") {
             hours = (parseInt(hours, 10) + 12).toString();
         }
 
         const formattedTime = `${hours}:${minutes}`;
         setInterviewTime(formattedTime);
-    }
+    };
+
+
 
     const handleAddress = (e) => {
         setAddress(e.target.value)
@@ -138,11 +139,14 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
                     <input type="time" value={interviewTime} onChange={handleTimeChange} />
                     <p onClick={() => { setVirtual(true) }}>Virtual</p>
                     <p onClick={() => { setVirtual(false) }}>In-Person</p>
-                    <label>Address:</label>
-                    <input type="text" value={address} onChange={handleAddress} />
+                    {!virtual &&
+                        <>
+                            <label>Address:</label>
+                            <input type="text" value={address} onChange={handleAddress} />< br />
+                        </>
+                    }
                     <input type='submit' />
                 </form>
-
             }
         </div>
     )

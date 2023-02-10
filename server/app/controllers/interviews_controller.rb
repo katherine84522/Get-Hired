@@ -16,7 +16,7 @@ class InterviewsController < ApplicationController
 
     def update
         interview = Interview.find_by(id: params[:id])
-        interview.update(emailed:params[:emailed], completed: params[:completed])
+        interview.update(emailed:params[:emailed], completed: params[:completed], invited_next: params[:invited_next])
         render json: interview
     end
 
