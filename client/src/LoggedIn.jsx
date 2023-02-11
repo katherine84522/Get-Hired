@@ -4,6 +4,8 @@ import AllJobs from './AllJobs'
 import MyJobs from './MyJobs'
 import Connections from './Connections'
 import Interviews from './Interviews'
+import Calendar from './Calendar'
+import Dashboard from './Dashboard'
 
 export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentUser }) {
     return (
@@ -14,6 +16,8 @@ export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentU
                 <Route path="/myjobs" element={<MyJobs currentUser={currentUser} />} />
                 <Route path="/connections" element={<Connections currentUser={currentUser} />} />
                 <Route path="/interviews" element={<Interviews currentUser={currentUser} />} />
+                <Route path="/calendar" element={<Calendar currentUser={currentUser} />} />
+                <Route path="/dashboard" element={<Dashboard currentUser={currentUser} />} />
             </Routes>
         </div>
     )

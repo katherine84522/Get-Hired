@@ -20,6 +20,10 @@ export default function LoggedInNav({ setIsAuthenticated, currentUser }) {
             <br />
             <NavLink to='/interviews'>Interviews</NavLink>
             <br />
+            <NavLink to='/calendar'>Calendar</NavLink>
+            <br />
+            <NavLink to='/dashboard'>Dashboard</NavLink>
+            <br />
             <p onClick={() => { handleLogOut() }}>Log out</p>
         </div>
     )

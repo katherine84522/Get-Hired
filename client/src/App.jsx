@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import LoggedIn from "./LoggedIn";
 import LoggedOut from "./LoggedOut";
 
+
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);

@@ -4,9 +4,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 import time
 from selenium.webdriver.common.by import By
-import math
 import requests
-import json
 
 
 c = webdriver.ChromeOptions()

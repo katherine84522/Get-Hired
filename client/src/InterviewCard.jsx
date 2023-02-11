@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from 'react'
-
 export default function InterviewCard({ interview, setInterviews, currentUser, interviews }) {
 
     const [showUpdate, setShowUpdate] = useState(false)
@@ -13,8 +12,6 @@ export default function InterviewCard({ interview, setInterviews, currentUser, i
     const [invitedNext, setInvitedNext] = useState(true)
     const [time, setTime] = useState('')
     const [isEmailed, setIsEmailed] = useState(false)
-
-
 
 
 
@@ -138,6 +135,9 @@ export default function InterviewCard({ interview, setInterviews, currentUser, i
     }
 
 
+
+
+
     return (
         <div>
             <p>Company: {interview.job.company}</p>
@@ -149,7 +149,9 @@ export default function InterviewCard({ interview, setInterviews, currentUser, i
                 <button onClick={() => { setShowUpdate(!showUpdate) }}>Update</button>
             }
             {!interview.completed &&
-                <button onClick={() => { handleComplete() }}>Completed</button>
+                <div>
+                    <button onClick={() => { handleComplete() }}>Completed</button>
+                </div>
             }
             {showUpdate &&
                 <form onSubmit={(e) => { handleSubmit(e) }}>
