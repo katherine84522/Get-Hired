@@ -21,7 +21,12 @@ ChartJS.register(
 export default function Dashboard({ currentUser }) {
 
     const [sevenDates, setSevenDates] = useState([])
+    const [lastFourWeeks, setLastFourWeeks] = useState([])
     const [applications, setApplications] = useState([])
+    const [connections, setConnections] = useState([])
+    const [isLastWeek, setIsLastWeek] = useState(true)
+    const [weeklyInterviews, setWeeklyInterviews] = useState([])
+
 
     useEffect(() => {
 
@@ -37,6 +42,26 @@ export default function Dashboard({ currentUser }) {
         }
         setSevenDates(dates)
 
+        const generateWeeks = () => {
+            const currentDate = new Date();
+            const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
+            const weeksArray = [];
+
+            for (let i = 0; i < 4; i++) {
+                const weekStart = new Date(firstDayOfWeek.getFullYear(), firstDayOfWeek.getMonth(), firstDayOfWeek.getDate() - 7 * i);
+                const weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 6);
+
+                weeksArray.push(`${weekStart.getMonth() + 1}/${weekStart.getDate()} - ${weekEnd.getMonth() + 1}/${weekEnd.getDate()}`);
+            }
+
+            return weeksArray.reverse();
+        };
+
+        const weeks = generateWeeks();
+        console.log(weeks);
+        setLastFourWeeks(weeks)
+
+
         const request = async () => {
             let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/jobs`)
             let res = await req.json()
@@ -44,6 +69,23 @@ export default function Dashboard({ currentUser }) {
             setApplications(res)
         }
         request()
+
+        const request2 = async () => {
+            let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/connections`)
+            let res = await req.json()
+
+            setConnections(res)
+        }
+        request2()
+
+        const request3 = async () => {
+            let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/interviews`)
+            let res = await req.json()
+
+            setWeeklyInterviews(res)
+        }
+        request3()
+
 
     }, [])
 
@@ -77,6 +119,48 @@ export default function Dashboard({ currentUser }) {
     console.log('totalApplicationsPerDay', totalApplicationsPerDay)
 
 
+    const getJobsAppliedPerWeek = data => {
+        const currentDate = new Date();
+        const firstDayOfWeek = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() - currentDate.getDay());
+        const weeksArray = [];
+
+        for (let i = 0; i < 4; i++) {
+            const weekStart = new Date(firstDayOfWeek.getFullYear(), firstDayOfWeek.getMonth(), firstDayOfWeek.getDate() - 7 * i);
+            const weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 6);
+
+            const weekStartTimestamp = weekStart.getTime();
+            const weekEndTimestamp = weekEnd.getTime();
+
+            let count = 0;
+            data.forEach(item => {
+                const appliedTimestamp = new Date(item.applied_date).getTime();
+                if (appliedTimestamp >= weekStartTimestamp && appliedTimestamp <= weekEndTimestamp) {
+                    count++;
+                }
+            });
+
+            weeksArray.push(count);
+        }
+
+        return weeksArray.reverse();
+    };
+
+    const jobsAppliedPerWeek = getJobsAppliedPerWeek(applications);
+    console.log(jobsAppliedPerWeek);
+
+    console.log(totalApplicationsPerDay)
+
+    const sumTotalJobs = (arr) => {
+        let sum = 0
+        for (let i = 0; i < arr.length; i++) {
+            sum += arr[i]
+        }
+        return sum
+    }
+
+    const sumOfWeeklyApplications = sumTotalJobs(totalApplicationsPerDay)
+
+    const sumOfMonthlyApplications = sumTotalJobs(jobsAppliedPerWeek)
 
     const data = {
         labels: sevenDates,
@@ -88,6 +172,97 @@ export default function Dashboard({ currentUser }) {
             }
         ]
     }
+
+    const last4WeeksData = {
+        labels: lastFourWeeks,
+        datasets: [
+            {
+                label: 'Total Jobs Applied',
+                data: jobsAppliedPerWeek,
+                backgroundColor: 'teal'
+            }
+        ]
+    }
+
+    function getLastWeekConnections(connections) {
+        let recentConnections = [];
+        let sevenDaysAgo = new Date();
+        sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+
+        for (let i = 0; i < connections.length; i++) {
+            let connection = connections[i];
+            let connectionDate = new Date(connection.created_at);
+            if (connectionDate >= sevenDaysAgo) {
+                recentConnections.push(connection);
+            }
+        }
+
+        return recentConnections;
+    }
+
+    const lastWeekConnections = getLastWeekConnections(connections)
+
+    console.log(lastWeekConnections)
+
+    function getLastMonthConnections(connections) {
+        let recentConnections = [];
+        let oneMonthAgo = new Date();
+        oneMonthAgo.setMonth(oneMonthAgo.getMonth() - 1);
+
+        for (let i = 0; i < connections.length; i++) {
+            let connection = connections[i];
+            let connectionDate = new Date(connection.created_at);
+            if (connectionDate >= oneMonthAgo) {
+                recentConnections.push(connection);
+            }
+        }
+
+        return recentConnections;
+    }
+
+    const lastMonthConnections = getLastMonthConnections(connections)
+    console.log(lastMonthConnections)
+
+
+    function countInterviews(interviews) {
+        const result = [];
+        const today = new Date();
+        let currentWeekStart = new Date(today.getFullYear(), today.getMonth(), today.getDate() - today.getDay());
+        for (let i = 0; i < 4; i++) {
+            let weekStart = new Date(currentWeekStart.getFullYear(), currentWeekStart.getMonth(), currentWeekStart.getDate() - 7 * i);
+            let weekEnd = new Date(weekStart.getFullYear(), weekStart.getMonth(), weekStart.getDate() + 6);
+            let count = 0;
+            for (let interview of interviews) {
+                if (interview.completed === true) {
+                    let interviewDate = new Date(interview.date);
+                    if (interviewDate >= weekStart && interviewDate <= weekEnd) {
+                        count++;
+                    }
+                }
+            }
+            result.push(count);
+            // `${weekStart.getMonth() + 1}/${weekStart.getDate()}-${weekEnd.getMonth() + 1}/${weekEnd.getDate()}: ${count} interviews`
+        }
+        return result;
+    }
+
+    const interviews = countInterviews(weeklyInterviews).reverse()
+
+    console.log(interviews)
+
+    const last4WeeksInterviews = {
+        labels: lastFourWeeks,
+        datasets: [
+            {
+                label: 'Total Jobs Applied',
+                data: interviews,
+                backgroundColor: 'orange'
+            }
+        ]
+    }
+
+
+
 
     let options = {
         plugins: {
@@ -127,6 +302,7 @@ export default function Dashboard({ currentUser }) {
         }
     };
 
+
     return (
         <div style={{ width: '100%', height: '100%' }}>
             <div
@@ -138,9 +314,54 @@ export default function Dashboard({ currentUser }) {
                     }
                 }
             >
-                <h3>Total Jobs Applied</h3>
+                <h3>{sumOfWeeklyApplications} Jobs Applied in Last 7 Days</h3>
                 <Bar
                     data={data}
+                    options={options}
+                ></Bar>
+            </div>
+            <div
+                style={
+                    {
+                        padding: '20px',
+                        width: '50%',
+                        height: '50%',
+                    }
+                }
+            >
+                <h3>{sumOfMonthlyApplications} Jobs Applied in Last 4 Weeks</h3>
+                <Bar
+                    data={last4WeeksData}
+                    options={options}
+                ></Bar>
+            </div>
+            <div>
+                <h3>New Connections</h3>
+                <button onClick={() => { setIsLastWeek(true) }}>Added in last 7 days</button>
+                <button onClick={() => { setIsLastWeek(false) }}>Added in the Last Month</button>
+                <div>
+                    {
+                        (isLastWeek ? lastWeekConnections : lastMonthConnections).map((connection) => {
+                            return (
+                                <div style={{ display: 'flex' }}>
+                                    <p style={{ paddingRight: 10 }}>{connection.name} ·</p>
+                                    <p>{connection.position} at {connection.company}</p>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+            <div style={
+                {
+                    padding: '20px',
+                    width: '50%',
+                    height: '50%',
+                }
+            }>
+                <h3>Interviews in Last 4 Weeks</h3>
+                <Bar
+                    data={last4WeeksInterviews}
                     options={options}
                 ></Bar>
             </div>
