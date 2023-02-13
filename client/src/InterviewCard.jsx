@@ -144,6 +144,10 @@ export default function InterviewCard({ interview, setInterviews, currentUser, i
             <p>Position: {interview.job.job_title}</p>
             <p>Date: {interview.date}</p>
             <p>Time: {time}</p>
+            <p>Type: {interview.virtual ? 'Virtual' : 'In-Person'}</p>
+            {!interview.virtual &&
+                <p>Address: {interview.address}</p>
+            }
             <p>Round: {interview.round}</p>
             {(!interview.invited_next && interview.completed) &&
                 <button onClick={() => { setShowUpdate(!showUpdate) }}>Update</button>

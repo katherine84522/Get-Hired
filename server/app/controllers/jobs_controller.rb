@@ -10,7 +10,7 @@ class JobsController < ApplicationController
     end
 
     def create
-        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location], referred: params[:referred], interview: params[:interview])
+        job = Job.create(applied: params[:applied], saved: params[:saved], user_id: params[:user_id], link: params[:link], company: params[:company], job_title: params[:job_title], location: params[:location], referred: params[:referred], interview: params[:interview], applied_date:params[:applied_date])
         render json: job
     end
 

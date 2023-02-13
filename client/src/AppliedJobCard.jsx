@@ -47,11 +47,12 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
         let value = e.target.value;
         let hours = value.substr(0, 2);
         let minutes = value.substr(3, 2);
+        let amPm = value.substr(6, 2);
 
         if (hours === "12") {
             hours = "00";
         }
-        if (value.indexOf("PM") !== -1 && hours !== "12") {
+        if (amPm === "PM" && hours !== "12") {
             hours = (parseInt(hours, 10) + 12).toString();
         }
 

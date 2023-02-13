@@ -63,7 +63,7 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
 
     useEffect(() => {
         const request = async () => {
-            let req = await fetch('http://127.0.0.1:3000/connections')
+            let req = await fetch(`http://127.0.0.1:3000/users/${currentUser.id}/connections`)
             let res = await req.json()
             console.log(res)
             setConnections(res)

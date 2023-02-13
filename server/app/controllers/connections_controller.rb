@@ -19,13 +19,14 @@ class ConnectionsController < ApplicationController
             driver.get('https://www.linkedin.com/')
             email = driver.find_element(:xpath, '//*[@id="session_key"]')
             email.send_keys('naruto29@myyahoo.com')
+            sleep 1
             password = driver.find_element(:xpath, '//*[@id="session_password"]')
             password.send_keys('@linkedinyes')
             sleep 1
             signinBtn = driver.find_element(:xpath, '//*[@id="main-content"]/section[1]/div/div/form/button')
             signinBtn.click
             driver.get(params[:link])
-            sleep 3
+            sleep 2
             nameDiv = driver.find_element(:class_name, 'pv-text-details__left-panel')
             name = nameDiv.find_element(:tag_name, 'h1').text
             p name

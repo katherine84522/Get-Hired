@@ -24,6 +24,8 @@ export default function LoggedInNav({ setIsAuthenticated, currentUser }) {
             <br />
             <NavLink to='/dashboard'>Dashboard</NavLink>
             <br />
+            <NavLink to='/report'>Report</NavLink>
+            <br />
             <p onClick={() => { handleLogOut() }}>Log out</p>
         </div>
     )

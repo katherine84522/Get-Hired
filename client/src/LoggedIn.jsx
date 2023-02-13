@@ -6,6 +6,7 @@ import Connections from './Connections'
 import Interviews from './Interviews'
 import Calendar from './Calendar'
 import Dashboard from './Dashboard'
+import Report from './Report'
 
 export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentUser }) {
     return (
@@ -18,6 +19,7 @@ export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentU
                 <Route path="/interviews" element={<Interviews currentUser={currentUser} />} />
                 <Route path="/calendar" element={<Calendar currentUser={currentUser} />} />
                 <Route path="/dashboard" element={<Dashboard currentUser={currentUser} />} />
+                <Route path="/report" element={<Report currentUser={currentUser} />} />
             </Routes>
         </div>
     )

@@ -9,16 +9,12 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
     const [futureDate, setFutureDate] = useState(new Date().toISOString().slice(0, 10))
 
     const currentday = new Date();
-    // const dispatch = useDispatch()
 
-    // useEffect(() => {
-    //     dispatch(changeValue({ job_title: posting.job_title, company: posting, link: posting.link, location: posting.location, js: posting.js, python: posting.python, ruby: posting.ruby, react: posting.react }))
-    // }, [])
 
     const handleDateChange = (e) => {
         const date = new Date(e.target.value)
         setFutureDate(date.toISOString().slice(0, 10))
-        console.log(futureDate)
+        // console.log(futureDate)
     }
 
 
@@ -35,7 +31,7 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
             })
         });
         let res = await req.json()
-        console.log(res)
+        // console.log(res)
 
         let req2 = await fetch("http://127.0.0.1:3000/postings")
         let res2 = await req2.json()
@@ -43,16 +39,13 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
             return !posting.deleted.includes(currentUser.id);
         });
         setPostings(filteredPostings)
-        console.log(filteredPostings)
+        // console.log(filteredPostings)
 
 
-        let appliedDate
-        if (today) {
-            appliedDate = currentday.toISOString();
-        } else {
+        let appliedDate = currentday.toISOString()
+        if (!today) {
             appliedDate = futureDate
         }
-
 
         let req3 = await fetch(`http://127.0.0.1:3000/jobs`, {
             method: 'POST',
@@ -72,7 +65,7 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
             })
         });
         let res3 = await req3.json()
-        console.log(res3)
+        // console.log(res3)
 
 
     }
