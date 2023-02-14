@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react'
 
+
 export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferralAdded, referralAdded, setAppliedJobs }) {
 
 
@@ -102,20 +103,23 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
 
     }
 
+
     return (
-        <div>
-            <h2>{job.job_title}</h2>
-            <h3>{job.company}</h3>
-            {/* <p>{job.location}</p> */}
-            {connectionName !== null &&
-                <p>Connection : {connectionName}</p>
-            }
-            {!connectionName &&
-                <button onClick={() => { setShowConnections(!showConnections) }}>Add referral</button>
-            }
-            <button onClick={() => { setShowDate(!showDate) }}>Applied</button>
-            {showConnections &&
-                <div>
+        <div style={{ display: 'flex', gap: '5vw', width: '40vw', height: '12vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'>
+            <div style={{ marginTop: '2.5vh', marginLeft: '2vw', display: 'flex', flexDirection: 'column', gap: '1vw', width: '41%' }}>
+                <h2 className='text-2xl font-semibold dark:text-amber-300 '>{job.job_title}</h2>
+                <h3 className='font-semibold text-cyan-400 dark:text-white'>{job.company}</h3>
+                <p className='dark:text-white text-amber-500'>{job.location}</p>
+            </div>
+            <div style={{ marginTop: '4vh' }}>
+                {connectionName !== null &&
+                    <p>Connection : {connectionName}</p>
+                }
+                {!connectionName &&
+                    <button onClick={() => { setShowConnections(!showConnections) }} style={{ marginLeft: '8vw' }} className="inline-block px-8 py-2 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out" >Add referral</button>
+                }
+
+                {showConnections &&
                     <form onSubmit={(e) => { handleConnection(e) }}>
                         <select value={selectedValue} onChange={handleSelected}>
                             <option value="" default selected>Select a connection</option>
@@ -129,10 +133,10 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
                         </select>
                         <button type="submit">Add</button>
                     </form>
+                }
 
-                </div>
-
-            }
+                <button onClick={() => { setShowDate(!showDate) }} style={{ marginTop: '7vh', marginLeft: '8vw', width: '10vw', textDecoration: 'underline' }}>Mark as Applied</button>
+            </div>
             {showDate &&
                 <form onSubmit={(e) => { handleApplied(e) }}>
                     <label>When did you apply?</label>

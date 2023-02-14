@@ -34,7 +34,7 @@ const App = () => {
 
 
   return (
-    <div className="h-screen dark:bg-slate-500 bg-stone-100">
+    <div className="h-screen dark:bg-black bg-[#f0ede9]" >
       <Router>{isAuthenticated ? <LoggedIn theme={theme} currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} handleThemeSwitch={handleThemeSwitch} setTheme={setTheme} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} handleThemeSwitch={handleThemeSwitch} setTheme={setTheme} theme={theme} />}</Router>
     </div>
   );

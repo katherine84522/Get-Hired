@@ -113,26 +113,30 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
 
 
     return (
-        <div>
-            <h2>{job.job_title}</h2>
-            <h3>{job.company}</h3>
-            <h3>Applied on {job.applied_date}</h3>
-            {job.connection !== null &&
-                <div>
-                    {showReferred ?
-                        <p>Referred by {job.connection.name}</p>
-                        :
-                        <p>Connection: {job.connection.name}</p>
-                    }
-                    {!showReferred &&
-                        <div style={{ display: 'flex' }}>
-                            <p>not yet referred</p>
-                            <button onClick={() => { handleReferred() }}>Referred</button>
-                        </div>
-                    }
-                </div>
-            }
-            <button onClick={() => { setShowInterview(!showInterview) }}>Invited to Interview</button>
+        <div style={{ display: 'flex', gap: '5vw', width: '45vw', height: '14vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1vw', marginTop: '2vw', marginLeft: '2vw' }}>
+                <h2 className='text-2xl font-semibold dark:text-amber-300 '>{job.job_title}</h2>
+                <h3 className='font-semibold text-cyan-400 dark:text-white'>{job.company}</h3>
+                <h3 className='dark:text-white text-amber-500'>Applied on {job.applied_date}</h3>
+            </div>
+            <div style={{ marginTop: '2vw', marginLeft: '2vw' }}>
+                {job.connection !== null &&
+                    <div>
+                        {showReferred ?
+                            <p>Referred by {job.connection.name}</p>
+                            :
+                            <p className='font-semibold' >Connection: {job.connection.name}</p>
+                        }
+                        {!showReferred &&
+                            <div>
+                                <p>Status: Not yet referred</p>
+                                <button onClick={() => { handleReferred() }} style={{ textDecoration: 'underline' }}>Mark as Referred</button>
+                            </div>
+                        }
+                    </div>
+                }
+                <button className="inline-block px-8 py-2 mt-7 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { setShowInterview(!showInterview) }}>Invited to Interview</button>
+            </div>
             {showInterview &&
                 <form onSubmit={(e) => { handleSubmit(e) }}>
                     <label>Interview date and time:</label>

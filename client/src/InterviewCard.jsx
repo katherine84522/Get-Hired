@@ -139,24 +139,32 @@ export default function InterviewCard({ interview, setInterviews, currentUser, i
 
 
     return (
-        <div>
-            <p>Company: {interview.job.company}</p>
-            <p>Position: {interview.job.job_title}</p>
-            <p>Date: {interview.date}</p>
-            <p>Time: {time}</p>
-            <p>Type: {interview.virtual ? 'Virtual' : 'In-Person'}</p>
-            {!interview.virtual &&
-                <p>Address: {interview.address}</p>
-            }
-            <p>Round: {interview.round}</p>
+        <div style={{ display: 'flex', gap: '5vw', width: '50vw', height: '14vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'>
+            <div className='mt-8 ml-7' style={{ width: '35%' }}>
+                <p className='text-2xl font-semibold dark:text-amber-300 '>{interview.job.job_title}</p>
+                <p className='mt-4 font-semibold text-cyan-400 dark:text-white'>{interview.job.company}</p>
+                <p className='mt-4 dark:text-white text-amber-500'>Round: {interview.round}</p>
+            </div>
+            <div className='mt-9 ml-3' style={{ display: 'flex', flexDirection: 'column', gap: '1vh', width: '30%' }}>
+                <p className='font-semibold'>Date: {interview.date}</p>
+                <p className='font-semibold'>Time: {time}</p>
+                <p className='font-semibold'>Type: {interview.virtual ? 'Virtual' : 'In-Person'}</p>
+                {!interview.virtual &&
+                    <p className='font-semibold'>Address: {interview.address}</p>
+                }
+
+            </div>
             {(!interview.invited_next && interview.completed) &&
-                <button onClick={() => { setShowUpdate(!showUpdate) }}>Update</button>
-            }
-            {!interview.completed &&
-                <div>
-                    <button onClick={() => { handleComplete() }}>Completed</button>
+                <div style={{ width: '22%', marginTop: '18vh' }}>
+                    <button onClick={() => { setShowUpdate(!showUpdate) }} className="mr-2 inline-block px-8 py-2 bg-cyan-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-cyan-400 hover:shadow-lg focus:bg-cyan-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Update</button>
                 </div>
             }
+            {!interview.completed &&
+                <div style={{ width: '22%', marginTop: '18vh' }}>
+                    <button onClick={() => { handleComplete() }} style={{ textDecoration: 'underline' }}>Completed</button>
+                </div>
+            }
+
             {showUpdate &&
                 <form onSubmit={(e) => { handleSubmit(e) }}>
                     {!isEmailed &&

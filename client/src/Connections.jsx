@@ -105,11 +105,16 @@ export default function Connections({ currentUser }) {
 
     return (
         <div>
-            <h2>My Network</h2>
             <div style={{ display: 'flex' }}>
-                <button onClick={() => { setAddForm(!addForm) }}>Add a connection</button>
-                <button onClick={() => { setRecruiters(false) }}>All</button>
-                <button onClick={() => { setRecruiters(true) }}>Recruiter</button>
+                <div className='ml-12 mt-8'>
+                    <h2 className=" font-semibold text-left text-4xl dark:text-white">My Network</h2>
+                    <p className='mt-4 dark:text-white'>Good luck to you, {currentUser.username} !</p>
+                </div>
+                <div style={{ display: 'flex', marginLeft: '15vw', gap: '3vw', marginTop: '2vw', marginBottom: '2vw' }}>
+                    <button onClick={() => { setRecruiters(false) }} className="inline-block px-10 py-2 bg-amber-300 text-white font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out">All</button>
+                    <button onClick={() => { setRecruiters(true) }} className="inline-block px-10 py-2.5 bg-cyan-300 text-white font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-cyan-400 hover:shadow-lg focus:bg-cyan-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Recruiter</button>
+                    <button onClick={() => { setAddForm(!addForm) }} className="inline-block px-10 py-2.5 bg-white text-black font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-neutral-300 hover:shadow-lg focus:bg-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Add</button>
+                </div>
             </div>
             {addForm &&
                 (automate ?
@@ -145,23 +150,24 @@ export default function Connections({ currentUser }) {
                     <p>Getting the info...</p>
                 </div>
             }
-
-            {recruiters ?
-                (
-                    filterRecruiters.map((connection) => {
-                        return (
-                            <ConnectionCard connection={connection} setConnections={setConnections} connections={connections} setRecruiters={setRecruiters} />
-                        )
-                    })
-                ) :
-                (
-                    connections.map((connection) => {
-                        return (
-                            <ConnectionCard connection={connection} setConnections={setConnections} connections={connections} setRecruiters={setRecruiters} />
-                        )
-                    })
-                )
-            }
+            <div className="mt-10" style={{ display: 'flex', flexDirection: 'column', gap: '3vw' }}>
+                {recruiters ?
+                    (
+                        filterRecruiters.map((connection) => {
+                            return (
+                                <ConnectionCard connection={connection} setConnections={setConnections} connections={connections} setRecruiters={setRecruiters} />
+                            )
+                        })
+                    ) :
+                    (
+                        connections.map((connection) => {
+                            return (
+                                <ConnectionCard connection={connection} setConnections={setConnections} connections={connections} setRecruiters={setRecruiters} />
+                            )
+                        })
+                    )
+                }
+            </div>
         </div>
     )
 }

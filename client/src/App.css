@@ -7,9 +7,3 @@ body {
   min-height: 100%;
   height: 100%;
 }
-
-.title {
-  color: white;
-  font-size: 40px;
-  -webkit-text-stroke: 2px black;
-}
