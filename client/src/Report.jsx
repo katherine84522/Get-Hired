@@ -4,7 +4,7 @@ import { LinkedinShareButton, LinkedinIcon, EmailShareButton, EmailIcon } from '
 
 export default function Report() {
 
-    const img = '../public/TopSkills.png'
+    const img = '../TopSkills.png'
     const shareUrl = 'https://imgur.com/3AYBrVg'
 
     const handleEmailClick = () => {

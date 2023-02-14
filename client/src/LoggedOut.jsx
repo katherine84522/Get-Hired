@@ -4,10 +4,10 @@ import AllJobs from './AllJobs';
 import SignupForm from './SignupForm';
 import LoginForm from './LoginForm';
 
-export default function LoggedOut({ setCurrentUser, setIsAuthenticated }) {
+export default function LoggedOut({ setCurrentUser, setIsAuthenticated, setTheme, handleThemeSwitch, theme }) {
     return (
         <div style={{ display: 'flex' }}>
-            <LoggedOutNav />
+            <LoggedOutNav setTheme={setTheme} handleThemeSwitch={handleThemeSwitch} theme={theme} />
             <Routes>
                 <Route path="/" element={<AllJobs />} />
                 <Route path="/signup" element={<SignupForm setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />} />

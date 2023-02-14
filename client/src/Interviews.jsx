@@ -22,8 +22,8 @@ export default function Interviews({ currentUser }) {
     return (
         <div>
             <div>
-                <button onClick={() => { setCompleted(false) }}>Scheduled</button>
-                <button onClick={() => { setCompleted(true) }}>Past</button>
+                <button onClick={() => { setCompleted(false) }}>Upcoming</button>
+                <button onClick={() => { setCompleted(true) }}>Completed</button>
             </div>
             <div>
                 {

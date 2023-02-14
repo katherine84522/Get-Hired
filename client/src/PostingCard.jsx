@@ -1,5 +1,4 @@
-import { useDispatch } from "react-redux"
-import { changeValue } from './features/posting'
+
 import { useState } from 'react'
 
 export default function PostingCard({ posting, isAuthenticated, currentUser, setPostings }) {
@@ -120,34 +119,46 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
 
     const today1 = new Date().toISOString().split('T')[0];
 
+    const title_length = posting.job_title.length
 
     return (
-        <div>
-            <h3>{posting.job_title}</h3>
-            <p>{posting.company}</p>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                {posting.js && <p>JavaScript✅</p>}
-                {posting.react && <p>ReactJS✅</p>}
-                {posting.ruby && <p>Ruby✅</p>}
-                {posting.python && <p>Python✅</p>}
+        <div className='bg-white rounded-lg drop-shadow-lg hover:bg-yellow-100' style={{ display: 'flex', height: '20vh', width: '87%' }}>
+            <div className='mt-2 ml-10' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '40%', gap: '2vh' }}>
+                {title_length < 30 ?
+                    <h3 className='text-xl font-bold text-amber-400'>{posting.job_title}</h3>
+                    :
+                    <h3 className='text-xl font-bold text-amber-400'>Software Engineer</h3>
+                }
+                <p className='font-semibold'>{posting.company}</p>
+                <p>{posting.location}</p>
             </div>
-            {isAuthenticated &&
-                <div>
-                    <p onClick={() => { setShowDate(!showDate) }}>Applied</p>
-                    <p onClick={() => { handleSave() }}>Save</p>
-                </div>
-            }
-            {showDate &&
-                <form onSubmit={(e) => { handleApplied(e) }}>
-                    <label>When did you apply?</label>
-                    <p onClick={() => { setToday(true) }}>Today</p>
-                    <p onClick={() => { setToday(false) }}>Not Today</p>
-                    {!today &&
-                        <input type="date" max={today1} value={futureDate} onChange={(e) => { handleDateChange(e) }} />
+            <div style={{ width: '60%', marginLeft: '2.5vw' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1vw', marginTop: '7vh', marginRight: '1vw' }}>
+                    <div style={{ display: 'flex', gap: '1vw' }}>
+                        {posting.js && <p>JavaScript✅</p>}
+                        {posting.react && <p>ReactJS✅</p>}
+                        {posting.ruby && <p>Ruby✅</p>}
+                        {posting.python && <p>Python✅</p>}
+                    </div>
+                    {isAuthenticated &&
+                        <div style={{ display: 'flex', gap: '2vw', justifyContent: 'right', marginRight: '1vw', marginTop: '1.5vw' }}>
+                            <p onClick={() => { setShowDate(!showDate) }} >Applied</p>
+                            <p onClick={() => { handleSave() }} >Save</p>
+                        </div>
                     }
-                    <input type='submit' />
-                </form>
-            }
+                </div>
+                {showDate &&
+                    <form onSubmit={(e) => { handleApplied(e) }}>
+                        <label>When did you apply?</label>
+                        <p onClick={() => { setToday(true) }}>Today</p>
+                        <p onClick={() => { setToday(false) }}>Not Today</p>
+                        {!today &&
+                            <input type="date" max={today1} value={futureDate} onChange={(e) => { handleDateChange(e) }} />
+                        }
+                        <input type='submit' />
+                    </form>
+                }
+            </div>
         </div>
     )
 }

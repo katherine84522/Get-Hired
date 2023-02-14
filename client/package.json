@@ -12,11 +12,6 @@
     "@devexpress/dx-react-core": "^4.0.3",
     "@devexpress/dx-react-scheduler": "^4.0.3",
     "@devexpress/dx-react-scheduler-material-ui": "^4.0.3",
-    "@react-oauth/google": "^0.7.0",
-    "@reduxjs/toolkit": "^1.9.2",
-    "@supabase/auth-helpers-react": "^0.3.1",
-    "@supabase/auth-ui-react": "^0.2.7",
-    "@supabase/supabase-js": "^2.7.1",
     "chart.js": "^4.2.1",
     "moment": "^2.29.4",
     "puppeteer": "^19.6.3",
@@ -24,16 +19,16 @@
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-google-login": "^5.2.2",
-    "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.0",
-    "react-share": "^4.4.1",
-    "redux": "^4.2.1"
+    "react-share": "^4.4.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.6",
     "vite": "^4.1.0"
   }
 }

@@ -8,6 +8,7 @@ import LoggedOut from "./LoggedOut";
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [theme, setTheme] = useState("Light")
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -20,12 +21,21 @@ const App = () => {
     });
   }, []);
 
-  // if (!isAuthenticated) {
-  //   return <div><h2>Not Authenticated</h2></div>;
-  // }
+  const handleThemeSwitch = () => {
+    setTheme(theme === "Dark" ? "Light" : "Dark");
+    console.log(theme)
+    if (theme === "Dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }
+
+
+
   return (
-    <div className="app">
-      <Router>{isAuthenticated ? <LoggedIn currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} />}</Router>
+    <div className="h-screen dark:bg-slate-500 bg-stone-100">
+      <Router>{isAuthenticated ? <LoggedIn theme={theme} currentUser={currentUser} setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} handleThemeSwitch={handleThemeSwitch} setTheme={setTheme} /> : <LoggedOut setCurrentUser={setCurrentUser} setIsAuthenticated={setIsAuthenticated} handleThemeSwitch={handleThemeSwitch} setTheme={setTheme} theme={theme} />}</Router>
     </div>
   );
 };

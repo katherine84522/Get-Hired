@@ -10,10 +10,15 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
         const request = async () => {
             let req = await fetch('http://127.0.0.1:3000/postings')
             let res = await req.json()
-            const filteredPostings = res.filter(posting => {
-                return !posting.deleted.includes(currentUser.id);
-            });
-            setPostings(filteredPostings)
+            if (isAuthenticated) {
+                const filteredPostings = res.filter(posting => {
+                    return !posting.deleted.includes(currentUser.id);
+                });
+                setPostings(filteredPostings)
+            } else {
+                setPostings(res)
+            }
+
         }
         request()
     }, [])
@@ -30,16 +35,22 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
 
     return (
         <div>
-            <h1>New Jobs</h1>
-            <div>
-                <select value={selectedOption} onChange={handleOptionChange}>
+            <div style={{ display: 'flex' }}>
+                <div className='ml-12 mt-8'>
+                    <h1 className="Helvetica Neue font-bold text-left text-3xl" class='title'>New Jobs</h1>
+                </div>
+                <label className='ml-28 mt-12' >Search by company name: </label>
+                <input className='mt-12 ml-4 drop-shadow-lg h-7' type="text" value={searchTerm} onChange={handleSearch} />
+                <label className='mt-12 ml-10'>Search by skill:</label>
+                <select className='ml-6 mt-12 drop-shadow-lg h-7' value={selectedOption} onChange={handleOptionChange}>
                     <option value="all">All</option>
                     <option value="js">JavaScript</option>
                     <option value="python">Python</option>
                     <option value="react">React</option>
                     <option value="ruby">Ruby</option>
                 </select>
-                <input type="text" placeholder="Search by company name" value={searchTerm} onChange={handleSearch} />
+            </div>
+            <div className='ml-56 pt-20' style={{ display: 'flex', flexDirection: 'column', gap: '2vw' }}>
                 {
                     filteredPostings.map((posting) => {
                         return (
@@ -48,6 +59,6 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
                     })
                 }
             </div>
-        </div>
+        </div >
     )
 }

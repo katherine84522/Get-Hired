@@ -45,44 +45,61 @@ const SignupForm = ({ setCurrentUser, setIsAuthenticated }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{}}>
-            <label htmlFor="username">Username:</label>
-            <input
-                id="username-signup-input"
-                type="text"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-            />
-            <br />
-            <label htmlFor="email">Email:</label>
-            <input
-                id="email-signup-input"
-                type="text"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-            />
-            <br />
-            <label htmlFor="password">Password:</label>
-            <input
-                id="password-signup-input"
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-            />
-            <br />
-            <label>Sign up for daily notifications</label>
-            <input
-                type="checkbox"
-                name="subscribed"
-                checked={formData.subscribed}
-                onChange={handleChange}
-            />
-            <br />
-            <button type="submit">Submit</button>
-        </form>
+        <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', marginLeft: '28vw' }}>
+            <div style={{ marginTop: '30vh', marginLeft: '-10vw' }}>
+                <img src='./signuppic.png' style={{ width: '80%' }} />
+            </div>
+            <div style={{ marginTop: '40vh', marginRight: '20vw', width: '40vw' }}>
+                <form onSubmit={handleSubmit}  >
+                    <div className='mb-4'>
+                        <input
+                            className='form-control block w-full px-4 py-2 -mt-12 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            id="username-signup-input"
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                            value={formData.username}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <br />
+                    <div className='mb-4'>
+                        <input
+                            className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            id="email-signup-input"
+                            type="text"
+                            name="email"
+                            placeholder="Email"
+                            value={formData.email}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <br />
+                    <div className='mb-4'>
+                        <input
+                            className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                            id="password-signup-input"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            value={formData.password}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    {/* <br /> */}
+                    {/* <label>Sign up for daily notifications</label> */}
+                    {/* <input
+                    className="h-4 w-4 border border-gray-300 rounded-sm mt-1 align-top bg-no-repeat float-left mr-2"
+                    type="checkbox"
+                    name="subscribed"
+                    checked={formData.subscribed}
+                    onChange={handleChange}
+                /> */}
+                    <br />
+                    <button className='ml-16 inline-block px-7 py-3 bg-amber-400 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out' type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
     );
 };
 

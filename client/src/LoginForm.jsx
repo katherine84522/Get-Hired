@@ -40,30 +40,39 @@ const LoginForm = ({ setCurrentUser, setIsAuthenticated }) => {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="username">Username:</label>
-                <input
-                    id="username-input"
-                    type="text"
-                    name="username"
-                    value={formData.username}
-                    onChange={handleChange}
-                />
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'center', flexGrow: 1 }}>
+            <div style={{ marginLeft: '20vw', marginTop: '2vw' }}>
+                <img src='./welcomeback.png' style={{ width: '70%' }} />
+            </div>
+            < form onSubmit={handleSubmit} style={{ margin: 'auto' }}>
+                <div className='mb-6'>
+                    <input
+                        className='form-control block w-full px-4 py-2 -mt-12 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                        id="username-input"
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        value={formData.username}
+                        onChange={handleChange}
+                    />
+                </div>
                 <br />
-                <label htmlFor="password">Password:</label>
-                <input
-                    id="password-input"
-                    type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
+                <div className='mb-6'>
+                    <input
+                        className='form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none'
+                        id="password-input"
+                        type="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        value={formData.password}
+                        onChange={handleChange}
+                    />
+                </div>
                 <br />
-                <button type="submit">Submit</button>
-            </form>
+                <button className='ml-16 inline-block px-7 py-3 bg-amber-400 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out' type="submit">Log In</button>
+            </form >
             {errorMsg && <p>Invalid username or password, please try again.</p>}
-        </div>
+        </div >
     );
 };
 

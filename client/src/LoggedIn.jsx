@@ -8,10 +8,10 @@ import Calendar from './Calendar'
 import Dashboard from './Dashboard'
 import Report from './Report'
 
-export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentUser }) {
+export default function LoggedIn({ setIsAuthenticated, isAuthenticated, currentUser, setTheme, handleThemeSwitch, theme }) {
     return (
-        <div style={{ display: 'flex' }}>
-            <LoggedInNav setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} />
+        <div style={{ display: 'flex', height: '100vh', width: 'auto' }}>
+            <LoggedInNav setIsAuthenticated={setIsAuthenticated} currentUser={currentUser} setTheme={setTheme} handleThemeSwitch={handleThemeSwitch} theme={theme} />
             <Routes>
                 <Route path="/" element={<AllJobs isAuthenticated={isAuthenticated} currentUser={currentUser} />} />
                 <Route path="/myjobs" element={<MyJobs currentUser={currentUser} />} />

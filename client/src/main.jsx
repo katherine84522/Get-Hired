@@ -4,7 +4,7 @@ import App from './App'
 
 
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.body).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
