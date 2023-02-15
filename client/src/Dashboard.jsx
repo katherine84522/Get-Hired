@@ -162,13 +162,15 @@ export default function Dashboard({ currentUser }) {
 
     const sumOfMonthlyApplications = sumTotalJobs(jobsAppliedPerWeek)
 
+
+
     const data = {
         labels: sevenDates,
         datasets: [
             {
                 label: 'Total Jobs Applied',
                 data: totalApplicationsPerDay,
-                backgroundColor: 'aqua'
+                backgroundColor: 'rgb(103 232 249)'
             }
         ]
     }
@@ -179,7 +181,7 @@ export default function Dashboard({ currentUser }) {
             {
                 label: 'Total Jobs Applied',
                 data: jobsAppliedPerWeek,
-                backgroundColor: 'teal'
+                backgroundColor: 'rgb(252 211 77)'
             }
         ]
     }
@@ -247,6 +249,7 @@ export default function Dashboard({ currentUser }) {
     }
 
     const interviews = countInterviews(weeklyInterviews).reverse()
+    const sumOfMonthlyInterviews = sumTotalJobs(interviews)
 
     console.log(interviews)
 
@@ -256,7 +259,7 @@ export default function Dashboard({ currentUser }) {
             {
                 label: 'Total Jobs Applied',
                 data: interviews,
-                backgroundColor: 'orange'
+                backgroundColor: 'rgb(252 211 77)'
             }
         ]
     }
@@ -304,66 +307,93 @@ export default function Dashboard({ currentUser }) {
 
 
     return (
-        <div style={{ width: '100%', height: '100%' }}>
-            <div
-                style={
-                    {
-                        padding: '20px',
-                        width: '50%',
-                        height: '50%',
+        <div style={{ width: '100%', height: '100%', marginLeft: '9%', marginTop: '4vh' }}>
+            <h1 className=" font-semibold text-left text-3xl dark:text-white mb-4">My Dashboard</h1>
+            <div style={{ display: 'flex', gap: '3vw', marginTop: '4vh' }}>
+                <div
+                    style={
+                        {
+                            padding: '20px',
+                            width: '46%',
+                            height: '40%',
+                            backgroundColor: 'white',
+                            borderRadius: '10px'
+                        }
                     }
-                }
-            >
-                <h3>{sumOfWeeklyApplications} Jobs Applied in Last 7 Days</h3>
-                <Bar
-                    data={data}
-                    options={options}
-                ></Bar>
-            </div>
-            <div
-                style={
-                    {
-                        padding: '20px',
-                        width: '50%',
-                        height: '50%',
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+
+                >
+                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfWeeklyApplications} Jobs Applied in Last 7 Days</h3>
+                    <Bar
+                        data={data}
+                        options={options}
+                    ></Bar>
+                </div>
+                <div
+                    style={
+                        {
+                            padding: '20px',
+                            width: '46%',
+                            height: '50%',
+                            backgroundColor: 'white',
+                            borderRadius: '10px'
+                        }
                     }
-                }
-            >
-                <h3>{sumOfMonthlyApplications} Jobs Applied in Last 4 Weeks</h3>
-                <Bar
-                    data={last4WeeksData}
-                    options={options}
-                ></Bar>
-            </div>
-            <div>
-                <h3>New Connections</h3>
-                <button onClick={() => { setIsLastWeek(true) }}>Added in last 7 days</button>
-                <button onClick={() => { setIsLastWeek(false) }}>Added in the Last Month</button>
-                <div>
-                    {
-                        (isLastWeek ? lastWeekConnections : lastMonthConnections).map((connection) => {
-                            return (
-                                <div style={{ display: 'flex' }}>
-                                    <p style={{ paddingRight: 10 }}>{connection.name} ·</p>
-                                    <p>{connection.position} at {connection.company}</p>
-                                </div>
-                            )
-                        })
-                    }
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                >
+                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfMonthlyApplications} Jobs Applied in Last 4 Weeks</h3>
+                    <Bar
+                        data={last4WeeksData}
+                        options={options}
+                    ></Bar>
                 </div>
             </div>
-            <div style={
-                {
-                    padding: '20px',
-                    width: '50%',
-                    height: '50%',
+            <div style={{ display: 'flex', marginTop: '5vh', gap: '3vw' }}>
+                <div style={
+                    {
+                        padding: '20px',
+                        width: '46%',
+                        height: '50%',
+                        backgroundColor: 'white',
+                        borderRadius: '10px'
+                    }
                 }
-            }>
-                <h3>Interviews in Last 4 Weeks</h3>
-                <Bar
-                    data={last4WeeksInterviews}
-                    options={options}
-                ></Bar>
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                >
+                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfMonthlyInterviews} Interviews in Last 4 Weeks</h3>
+                    <Bar
+                        data={last4WeeksInterviews}
+                        options={options}
+                    ></Bar>
+                </div>
+                <div style={
+                    {
+                        padding: '20px',
+                        width: '46%',
+                        height: '36.8vh',
+                        backgroundColor: 'white',
+                        borderRadius: '10px'
+                    }
+                }
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                >
+
+                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>New Connections</h3>
+                    <button onClick={() => { setIsLastWeek(true) }} className="ml-4 inline-block px-6 py-2 bg-cyan-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-cyan-400 hover:shadow-lg focus:bg-cyan-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Added in last 7 days</button>
+                    <button onClick={() => { setIsLastWeek(false) }} className="ml-2 mt-2 inline-block px-6 py-2 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out">Added in the Last Month</button>
+                    <div className='mt-5 ml-3'>
+                        {
+                            (isLastWeek ? lastWeekConnections : lastMonthConnections).map((connection) => {
+                                return (
+                                    <div style={{ display: 'flex', marginTop: '1vh' }}>
+                                        <p className='text-lg' style={{ paddingRight: 10 }}>{connection.name} ·</p>
+                                        <p className='text-lg'> {connection.company}</p>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     )

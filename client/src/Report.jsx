@@ -12,18 +12,24 @@ export default function Report() {
     };
 
     return (
-        <div style={{ width: '100%', height: '100%' }}>
-            <h2>Most Needed Skills</h2>
-            <h3>Analyzed from 1500+ Linkedin Software Engineer Job Postings in the U.S.</h3>
+        <div style={{ width: '100%', height: '100%', marginLeft: '9vw' }}>
+            <div className='ml-2 mt-8 mb-6' style={{ display: 'flex' }}>
+                <h2 className=" font-semibold text-left text-3xl dark:text-white">Most Needed Skills</h2>
+                <div className='mt-3 ml-6'>
+                    <h3>Analyzed from 1500+ Linkedin Software Engineer Job Postings in the U.S.</h3>
+                </div>
+            </div>
             <div >
                 <img src={img} style={{ width: '70vw' }} />
             </div>
-            <LinkedinShareButton url={shareUrl}>
-                <LinkedinIcon size={40} />
-            </LinkedinShareButton>
-            <EmailShareButton onClick={() => { handleEmailClick }}>
-                < EmailIcon size={40} />
-            </EmailShareButton>
+            <div style={{ marginLeft: '32vw' }}>
+                <LinkedinShareButton url={shareUrl}>
+                    <LinkedinIcon size={40} />
+                </LinkedinShareButton>
+                <EmailShareButton onClick={() => { handleEmailClick }}>
+                    < EmailIcon size={40} />
+                </EmailShareButton>
+            </div>
         </div>
     )
 }

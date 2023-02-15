@@ -1,5 +1,6 @@
 
 import { useState, useEffect } from 'react'
+import ApplyForm from './ApplyForm'
 
 
 export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferralAdded, referralAdded, setAppliedJobs }) {
@@ -120,33 +121,32 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
                 }
 
                 {showConnections &&
-                    <form onSubmit={(e) => { handleConnection(e) }}>
-                        <select value={selectedValue} onChange={handleSelected}>
-                            <option value="" default selected>Select a connection</option>
-                            {
-                                connections.map((connection) => {
-                                    return (
-                                        <option value={connection.id}>{connection.name}</option>
-                                    )
-                                })
-                            }
-                        </select>
-                        <button type="submit">Add</button>
-                    </form>
+                    <div style={{ position: 'fixed', zIndex: 1, height: '100%', width: '100%', top: 0, right: 0, left: 0, bottom: 0 }}>
+                        <div style={{ position: 'absolute', backgroundColor: 'rgb(8 145 178)', width: '25vw', minHeight: '10vh', marginLeft: '20vw', borderRadius: '10px' }}>
+                            <form onSubmit={(e) => { handleConnection(e) }} style={{ marginTop: '2vh', marginLeft: '6vw' }}>
+                                <select value={selectedValue} onChange={handleSelected}>
+                                    <option value="" default selected>Select a connection</option>
+                                    {
+                                        connections.map((connection) => {
+                                            return (
+                                                <option value={connection.id}>{connection.name}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                                <div style={{ display: 'flex', gap: '4vw', marginTop: '2vh', marginLeft: '1vw', marginBottom: '1vh' }}>
+                                    <button type="submit" style={{ color: 'white' }}>Add</button>
+                                    <p onClick={() => { setShowConnections(false) }} style={{ color: 'white' }}>Close</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 }
 
                 <button onClick={() => { setShowDate(!showDate) }} style={{ marginTop: '7vh', marginLeft: '8vw', width: '10vw', textDecoration: 'underline' }}>Mark as Applied</button>
             </div>
             {showDate &&
-                <form onSubmit={(e) => { handleApplied(e) }}>
-                    <label>When did you apply?</label>
-                    <p onClick={() => { setToday(true) }}>Today</p>
-                    <p onClick={() => { setToday(false) }}>Not Today</p>
-                    {!today &&
-                        <input type="date" max={today1} value={futureDate} onChange={(e) => { handleDateChange(e) }} />
-                    }
-                    <input type='submit' />
-                </form>
+                < ApplyForm handleApplied={handleApplied} today={today} setToday={setToday} setShowDate={setShowDate} handleDateChange={handleDateChange} today1={today1} futureDate={futureDate} />
             }
         </div>
     )

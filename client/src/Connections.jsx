@@ -118,31 +118,47 @@ export default function Connections({ currentUser }) {
             </div>
             {addForm &&
                 (automate ?
-                    <form onSubmit={(e) => { handleAdd(e) }}>
-                        <input type='text' placeholder='Linkedin Profile Link' value={url} onChange={handleUrl} /><br />
-                        <input type='checkbox' checked={isRecruiter} onChange={handleChecked} />
-                        <label>recruiter</label><br />
-                        <label>Contact Info:</label>
-                        <input type='text' value={contact} onChange={handleContact} /><br />
-                        <input type='submit' />
-                        <p onClick={() => { setAutomate(false) }}>Add Manually</p>
-                    </form>
+                    <div style={{ position: 'fixed', zIndex: 1, height: '100%', width: '100%', top: 0, right: 0, left: 0, bottom: 0 }}>
+                        <div style={{ position: 'absolute', backgroundColor: 'rgb(8 145 178)', width: '25vw', minHeight: '10vh', marginLeft: '20vw', borderRadius: '10px', marginTop: '20%', marginLeft: '40vw' }}>
+                            <form onSubmit={(e) => { handleAdd(e) }} className='mt-5 ml-5'>
+                                <input type='text' placeholder='Linkedin Profile Link' value={url} onChange={handleUrl} className='ml-14 mb-4 mt-4' /><br />
+                                <input type='text' value={contact} onChange={handleContact} placeholder='Contact Info' className='ml-14 mb-4 mt-4' /><br />
+                                <input type='checkbox' checked={isRecruiter} onChange={handleChecked} className='ml-24 mb-4' />
+                                <label className='ml-2 text-white'>recruiter</label><br />
+                                <input type='submit' style={{ backgroundColor: 'orange', width: '5vw', textAlign: 'center', borderRadius: '10px', color: 'white', marginLeft: '8vw', marginTop: '2vh' }} />
+                                <div style={{ display: 'flex' }}>
+                                    <p onClick={() => { setAutomate(false) }} className='ml-16 mb-4 mt-5 text-white'>Add Manually</p>
+                                    <p onClick={() => { setAddForm(false) }} className='ml-8 mb-4 mt-5 text-white'>Close</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                     :
-                    <form onSubmit={(e) => { handleManual(e) }}>
-                        <label>Name:</label>
-                        <input type='text' value={connectionName} onChange={handleName} /><br />
-                        <label>Company:</label>
-                        <input type='text' value={connectionCompany} onChange={handleCompany} /><br />
-                        <label>Position:</label>
-                        <input type='text' value={connectionPosition} onChange={handlePosition} /><br />
-                        <label>Contact Info:</label>
-                        <input type='text' value={contact} onChange={handleContact} /><br />
-                        <input type='checkbox' checked={isRecruiter} onChange={handleChecked} />
-                        <label>recruiter</label><br />
-                        <input type='submit' />
-                        <p onClick={() => { setAutomate(true) }}>Add with Linkedin URL</p>
-                    </form>
-                )}
+                    <div style={{ position: 'fixed', zIndex: 1, height: '100%', width: '100%', top: 0, right: 0, left: 0, bottom: 0 }}>
+                        <div style={{ position: 'absolute', backgroundColor: 'rgb(8 145 178)', width: '25vw', minHeight: '10vh', marginLeft: '20vw', borderRadius: '10px', marginTop: '15%', marginLeft: '40vw' }}>
+                            <form onSubmit={(e) => { handleManual(e) }} className='mt-8 ml-16'>
+                                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5vh', width: '16vw' }}>
+                                    <input type='text' value={connectionName} onChange={handleName} placeholder='Name' /><br />
+
+                                    <input type='text' value={connectionCompany} onChange={handleCompany} placeholder='Company' /><br />
+
+                                    <input type='text' value={connectionPosition} onChange={handlePosition} placeholder='Position' /><br />
+
+                                    <input type='text' value={contact} onChange={handleContact} placeholder='Contact Info' /><br />
+                                </div >
+                                <input type='checkbox' checked={isRecruiter} onChange={handleChecked} className='ml-16' />
+                                <label className='ml-2 text-white'>recruiter</label><br />
+                                <input type='submit' style={{ backgroundColor: 'orange', width: '5vw', textAlign: 'center', borderRadius: '10px', color: 'white', marginTop: '3vh', marginLeft: '5vw' }} />
+                                <div style={{ display: 'flex' }}>
+                                    <p onClick={() => { setAutomate(true) }} className='mb-4 mt-5 text-white'>Add with Linkedin URL</p>
+                                    <p onClick={() => { setAddForm(false) }} className='ml-8 mb-4 mt-5 text-white' >Close</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                )
+
+            }
 
 
             {waiting &&

@@ -138,20 +138,29 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
                 <button className="inline-block px-8 py-2 mt-7 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out" onClick={() => { setShowInterview(!showInterview) }}>Invited to Interview</button>
             </div>
             {showInterview &&
-                <form onSubmit={(e) => { handleSubmit(e) }}>
-                    <label>Interview date and time:</label>
-                    <input type="date" value={interviewDate} onChange={handleDateChange} />
-                    <input type="time" value={interviewTime} onChange={handleTimeChange} />
-                    <p onClick={() => { setVirtual(true) }}>Virtual</p>
-                    <p onClick={() => { setVirtual(false) }}>In-Person</p>
-                    {!virtual &&
-                        <>
-                            <label>Address:</label>
-                            <input type="text" value={address} onChange={handleAddress} />< br />
-                        </>
-                    }
-                    <input type='submit' />
-                </form>
+                <div style={{ position: 'fixed', zIndex: 1, height: '100%', width: '100%', top: 0, right: 0, left: 0, bottom: 0 }}>
+                    <div style={{ position: 'absolute', backgroundColor: 'rgb(8 145 178)', width: '25vw', minHeight: '10vh', marginLeft: '20vw', borderRadius: '10px' }}>
+                        <form onSubmit={(e) => { handleSubmit(e) }} style={{ marginTop: '2vh', marginLeft: '2vw' }}>
+                            <label style={{ color: 'white' }} className='font-semibold' >Interview date and time:</label>< br />
+                            <input type="date" value={interviewDate} onChange={handleDateChange} style={{ marginRight: '1vw', marginLeft: '1vw', marginBottom: '4vh', marginTop: '2vh' }} />
+                            <input type="time" value={interviewTime} onChange={handleTimeChange} />
+                            <div style={{ display: 'flex', marginLeft: '4vw', gap: '2vw', marginBottom: '2vh' }}>
+                                <p onClick={() => { setVirtual(true) }} style={{ backgroundColor: 'orange', width: '5vw', textAlign: 'center', borderRadius: '10px', color: 'white' }}>Virtual</p>
+                                <p onClick={() => { setVirtual(false) }} style={{ backgroundColor: 'cyan', width: '7vw', textAlign: 'center', borderRadius: '10px', color: 'black' }}>In-Person</p>
+                            </div>
+                            {!virtual &&
+                                <>
+                                    <label>Address:</label>
+                                    <input type="text" value={address} onChange={handleAddress} />< br />
+                                </>
+                            }
+                            <div style={{ display: 'flex', gap: '4vw', color: 'white', textDecoration: 'underline', marginLeft: '5vw', marginBottom: '2vh' }}>
+                                <input type='submit' />
+                                <p onClick={() => { setShowInterview(false) }}>Close</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             }
         </div>
     )

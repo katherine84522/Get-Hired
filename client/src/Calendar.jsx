@@ -37,34 +37,36 @@ export default function Calendar({ currentUser }) {
 
             startDate: `${data.date}T${time}`,
             endDate: `${data.date}T${endTime}`,
-            title: `${data.job.job_title} Interview at ${data.job.company}`
+            title: `${time} for ${data.job.company}`
         }
     })
 
 
 
     return (
-        <Paper>
-            <Scheduler
-                data={calendarEvents}
-            >
-                <ViewState />
-                <MonthView
-                    startDayHour={9}
-                    endDayHour={14}
-                />
-                <WeekView
-                    cellDuration={60}
-                    startDayHour={8}
-                    endDayHour={18}
-                />
-                {/* <WeekView.TimeTableCell
+        <div style={{ width: '72%', marginLeft: '3vw', marginTop: '2vw' }}>
+            <Paper>
+                <Scheduler
+                    data={calendarEvents}
+                >
+                    <ViewState />
+                    <MonthView
+                        startDayHour={9}
+                        endDayHour={14}
+                    />
+                    <WeekView
+                        cellDuration={60}
+                        startDayHour={8}
+                        endDayHour={18}
+                    />
+                    {/* <WeekView.TimeTableCell
                     style={{ height: 40 }} /> */}
-                <Toolbar />
-                <ViewSwitcher />
-                <Appointments />
-            </Scheduler>
-        </Paper>
+                    <Toolbar />
+                    <ViewSwitcher />
+                    <Appointments />
+                </Scheduler>
+            </Paper>
+        </div>
 
     )
 }

@@ -42,9 +42,9 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
                         <p className='mt-4 dark:text-white'>Good luck to you, {currentUser.username} !</p>
                     }
                 </div>
-                <label className='ml-28 mt-12 dark:text-white font-semibold' >Search by company name: </label>
+                <label className='ml-28 mt-12 dark:text-white font-semibold text-lg' >Search by company name: </label>
                 <input className='mt-12 ml-4 drop-shadow-lg h-7' type="text" value={searchTerm} onChange={handleSearch} />
-                <label className='mt-12 ml-10 dark:text-white font-semibold'>Search by skill:</label>
+                <label className='mt-12 ml-8 dark:text-white font-semibold text-lg'>Search by skill:</label>
                 <select className='ml-6 mt-12 drop-shadow-lg h-7' value={selectedOption} onChange={handleOptionChange}>
                     <option value="all">All</option>
                     <option value="js">JavaScript</option>
@@ -53,7 +53,7 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
                     <option value="ruby">Ruby</option>
                 </select>
             </div>
-            <div className='ml-56 pt-20' style={{ display: 'flex', flexDirection: 'column', gap: '2vw', marginTop: '-2vh' }}>
+            <div className='ml-56 pt-16' style={{ display: 'flex', flexDirection: 'column', gap: '2vw', marginTop: '-2vh' }}>
                 {
                     filteredPostings.map((posting) => {
                         return (
