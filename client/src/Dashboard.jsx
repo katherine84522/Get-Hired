@@ -160,9 +160,9 @@ export default function Dashboard({ currentUser }) {
         return sum
     }
 
-    const sumOfWeeklyApplications = sumTotalJobs(totalApplicationsPerDay)
+    const sumOfWeeklyApplications = sumTotalJobs([3, 6, 4, 5, 2, 4, 3])
 
-    const sumOfMonthlyApplications = sumTotalJobs(jobsAppliedPerWeek)
+    const sumOfMonthlyApplications = sumTotalJobs([15, 12, 8, 18])
 
 
 
@@ -171,7 +171,7 @@ export default function Dashboard({ currentUser }) {
         datasets: [
             {
                 label: 'Total Jobs Applied',
-                data: totalApplicationsPerDay,
+                data: [3, 6, 4, 5, 2, 4, 3],
                 backgroundColor: 'rgb(103 232 249)'
             }
         ]
@@ -182,7 +182,7 @@ export default function Dashboard({ currentUser }) {
         datasets: [
             {
                 label: 'Total Jobs Applied',
-                data: jobsAppliedPerWeek,
+                data: [15, 12, 8, 18],
                 backgroundColor: 'rgb(252 211 77)'
             }
         ]
@@ -251,7 +251,7 @@ export default function Dashboard({ currentUser }) {
     }
 
     const interviews = countInterviews(weeklyInterviews).reverse()
-    const sumOfMonthlyInterviews = sumTotalJobs(interviews)
+    const sumOfMonthlyInterviews = sumTotalJobs([3, 2, 4, 2])
 
     console.log(interviews)
 
@@ -260,7 +260,7 @@ export default function Dashboard({ currentUser }) {
         datasets: [
             {
                 label: 'Total Jobs Applied',
-                data: interviews,
+                data: [3, 2, 2, 4],
                 backgroundColor: 'rgb(252 211 77)'
             }
         ]

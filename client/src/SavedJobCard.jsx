@@ -107,8 +107,12 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
 
     return (
         <div style={{ display: 'flex', width: '40vw', height: '12vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'>
-            <div style={{ marginTop: '2.5vh', marginLeft: '2vw', display: 'flex', flexDirection: 'column', gap: '1vw', width: '70%' }}>
-                <h2 className='text-2xl font-semibold dark:text-amber-300 '>{job.job_title}</h2>
+            <div style={{ marginTop: '2.5vh', marginLeft: '2vw', display: 'flex', flexDirection: 'column', gap: '0.7vw', width: '70%' }}>
+                {job.job_title < 30 ?
+                    <h2 className='text-2xl font-semibold dark:text-white mt-2 ' onClick={() => { handleClick() }}>{job.job_title}</h2>
+                    :
+                    <h2 className='text-2xl font-semibold dark:text-white mt-2' onClick={() => { handleClick() }}>Software Engineer</h2>
+                }
                 <h3 className='font-semibold text-cyan-400 dark:text-white'>{job.company}</h3>
                 <p className='dark:text-white text-amber-500'>{job.location}</p>
             </div>

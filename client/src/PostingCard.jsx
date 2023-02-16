@@ -134,17 +134,17 @@ export default function PostingCard({ posting, isAuthenticated, currentUser, set
 
     return (
         <div className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800 dark:drop-shadow-white' style={{ display: 'flex', height: '20vh', width: '87%' }}>
-            <div className='mt-2 ml-10' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '40%', gap: '2vh' }}>
+            <div className='mt-2 ml-10' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '40%', gap: '1vh' }}>
                 {title_length < 30 ?
-                    <h3 className='text-2xl font-semibold dark:text-white ' onClick={() => { handleClick() }}>{posting.job_title}</h3>
+                    <h3 className='text-2xl font-semibold dark:text-white mt-2 ' onClick={() => { handleClick() }}>{posting.job_title}</h3>
                     :
-                    <h3 className='text-2xl font-semibold dark:text-white' onClick={() => { handleClick() }}>Software Engineer</h3>
+                    <h3 className='text-2xl font-semibold dark:text-white mt-2' onClick={() => { handleClick() }}>Software Engineer</h3>
                 }
                 <p className='font-semibold text-cyan-400 dark:text-cyan-200'>{posting.company}</p>
                 {location_length < 27 ?
-                    <p className='dark:text-amber-200 text-amber-500'>{posting.location}</p>
+                    <p className='dark:text-amber-200 text-amber-500 mb-2'>{posting.location}</p>
                     :
-                    <p className='dark:text-amber-200'>New York, NY</p>
+                    <p className='dark:text-amber-200 mb-2'>New York, NY</p>
                 }
             </div>
             <div style={{ width: '60%', marginLeft: '2.5vw' }}>

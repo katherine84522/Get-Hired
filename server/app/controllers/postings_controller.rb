@@ -1,7 +1,7 @@
 class PostingsController < ApplicationController
 
     def index
-        render json: Posting.all.order("id DESC")
+        render json: Posting.all
     end
 
     def show

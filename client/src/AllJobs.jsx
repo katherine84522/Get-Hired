@@ -37,9 +37,9 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
     const filteredPostings = selectedOption === 'all' ? postings.filter((posting) => posting.company.toLowerCase().includes(searchTerm.toLowerCase())) : postings.filter((posting) => posting[selectedOption])
 
     return (
-        <div style={{ overflowY: 'scroll', paddingRight: '8.2vw' }}>
+        <div style={{ overflowY: 'scroll', paddingRight: '8.3vw' }}>
             <div style={{ display: 'flex' }}>
-                <div className='ml-12 mt-8 mr-12'>
+                <div className='ml-12 mt-10 mr-6'>
                     <h1 className=" font-semibold text-left text-4xl dark:text-amber-200">New Jobs</h1>
                     {isAuthenticated &&
                         <p className='mt-4 dark:text-cyan-200'>Good luck to you, {currentUser.username} !</p>
