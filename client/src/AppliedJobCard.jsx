@@ -113,13 +113,13 @@ export default function AppliedJobCard({ job, setAppliedJobs, currentUser }) {
 
 
     return (
-        <div style={{ display: 'flex', gap: '5vw', width: '45vw', height: '14vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'>
+        <div style={{ display: 'flex', gap: '5vw', width: '45vw', height: '14vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1vw', marginTop: '2vw', marginLeft: '2vw' }}>
                 <h2 className='text-2xl font-semibold dark:text-amber-300 '>{job.job_title}</h2>
                 <h3 className='font-semibold text-cyan-400 dark:text-white'>{job.company}</h3>
                 <h3 className='dark:text-white text-amber-500'>Applied on {job.applied_date}</h3>
             </div>
-            <div style={{ marginTop: '2vw', marginLeft: '2vw' }}>
+            <div style={{ marginTop: '2vw', marginLeft: '2vw' }} className='font-semibold'>
                 {job.connection !== null &&
                     <div>
                         {showReferred ?

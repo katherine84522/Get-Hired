@@ -12,7 +12,10 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
             let res = await req.json()
             if (isAuthenticated) {
                 const filteredPostings = res.filter(posting => {
-                    return !posting.deleted.includes(currentUser.id);
+
+                    if (posting.deleted === null) { return posting } else {
+                        return !posting.deleted.includes(currentUser.id);
+                    }
                 });
                 setPostings(filteredPostings)
             } else {
@@ -31,18 +34,18 @@ export default function AllJobs({ isAuthenticated, currentUser }) {
         setSearchTerm(e.target.value)
     }
 
-    const filteredPostings = selectedOption === 'all' ? postings.filter((posting) => posting.company.toLowerCase().includes(searchTerm.toLowerCase())) : postings.filter((posting) => posting[selectedOption] && posting.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredPostings = selectedOption === 'all' ? postings.filter((posting) => posting.company.toLowerCase().includes(searchTerm.toLowerCase())) : postings.filter((posting) => posting[selectedOption])
 
     return (
-        <div>
+        <div style={{ overflowY: 'scroll', paddingRight: '8.2vw' }}>
             <div style={{ display: 'flex' }}>
-                <div className='ml-12 mt-8'>
-                    <h1 className=" font-semibold text-left text-4xl dark:text-white">New Jobs</h1>
+                <div className='ml-12 mt-8 mr-12'>
+                    <h1 className=" font-semibold text-left text-4xl dark:text-amber-200">New Jobs</h1>
                     {isAuthenticated &&
-                        <p className='mt-4 dark:text-white'>Good luck to you, {currentUser.username} !</p>
+                        <p className='mt-4 dark:text-cyan-200'>Good luck to you, {currentUser.username} !</p>
                     }
                 </div>
-                <label className='ml-28 mt-12 dark:text-white font-semibold text-lg' >Search by company name: </label>
+                <label className='ml-26 mt-12 dark:text-white font-semibold text-lg' >Search by company name: </label>
                 <input className='mt-12 ml-4 drop-shadow-lg h-7' type="text" value={searchTerm} onChange={handleSearch} />
                 <label className='mt-12 ml-8 dark:text-white font-semibold text-lg'>Search by skill:</label>
                 <select className='ml-6 mt-12 drop-shadow-lg h-7' value={selectedOption} onChange={handleOptionChange}>

@@ -89,8 +89,9 @@ export default function Dashboard({ currentUser }) {
 
     }, [])
 
+
     const today = new Date();
-    const past7Days = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
+    const past7Days = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000);
 
     const filteredApplications = applications.filter(application => {
         return (
@@ -99,10 +100,8 @@ export default function Dashboard({ currentUser }) {
         );
     });
 
-    console.log('filteredApplications', filteredApplications)
-
     const groupedApplications = filteredApplications.reduce((acc, application) => {
-        const date = application.applied_date;
+        const date = new Date(application.applied_date).toLocaleDateString('en-US', { timeZone: 'UTC' }); // convert date to string format
         if (!acc[date]) {
             acc[date] = [];
         }
@@ -110,13 +109,16 @@ export default function Dashboard({ currentUser }) {
         return acc;
     }, {});
 
-    console.log('groupedApplications', groupedApplications)
+    const totalApplicationsPerDay = [];
+    for (let i = 6; i >= 0; i--) {
+        const day = new Date(today.getTime() - i * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { timeZone: 'UTC' }); // get date string for each day
+        const applications = groupedApplications[day] || [];
+        totalApplicationsPerDay.push(applications.length);
+    }
 
-    const totalApplicationsPerDay = Object.values(groupedApplications).map(applications => {
-        return applications.length;
-    }).reverse();
+    console.log(totalApplicationsPerDay);
 
-    console.log('totalApplicationsPerDay', totalApplicationsPerDay)
+
 
 
     const getJobsAppliedPerWeek = data => {
@@ -307,8 +309,8 @@ export default function Dashboard({ currentUser }) {
 
 
     return (
-        <div style={{ width: '100%', height: '100%', marginLeft: '9%', marginTop: '4vh' }}>
-            <h1 className=" font-semibold text-left text-3xl dark:text-white mb-4">My Dashboard</h1>
+        <div style={{ width: '100%', marginLeft: '9%', marginTop: '4vh' }}>
+            <h1 className=" font-semibold text-left text-3xl dark:text-amber-200 mb-4">My Dashboard</h1>
             <div style={{ display: 'flex', gap: '3vw', marginTop: '4vh' }}>
                 <div
                     style={
@@ -316,14 +318,13 @@ export default function Dashboard({ currentUser }) {
                             padding: '20px',
                             width: '46%',
                             height: '40%',
-                            backgroundColor: 'white',
                             borderRadius: '10px'
                         }
                     }
-                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'
 
                 >
-                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfWeeklyApplications} Jobs Applied in Last 7 Days</h3>
+                    <h3 className='font-semibold text-lg dark:text-white' style={{ textAlign: 'center' }}>{sumOfWeeklyApplications} Jobs Applied in Last 7 Days</h3>
                     <Bar
                         data={data}
                         options={options}
@@ -335,13 +336,12 @@ export default function Dashboard({ currentUser }) {
                             padding: '20px',
                             width: '46%',
                             height: '50%',
-                            backgroundColor: 'white',
                             borderRadius: '10px'
                         }
                     }
-                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'
                 >
-                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfMonthlyApplications} Jobs Applied in Last 4 Weeks</h3>
+                    <h3 className='font-semibold text-lg dark:text-white' style={{ textAlign: 'center' }}>{sumOfMonthlyApplications} Jobs Applied in Last 4 Weeks</h3>
                     <Bar
                         data={last4WeeksData}
                         options={options}
@@ -354,13 +354,12 @@ export default function Dashboard({ currentUser }) {
                         padding: '20px',
                         width: '46%',
                         height: '50%',
-                        backgroundColor: 'white',
                         borderRadius: '10px'
                     }
                 }
-                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'
                 >
-                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>{sumOfMonthlyInterviews} Interviews in Last 4 Weeks</h3>
+                    <h3 className='font-semibold text-lg dark:text-white' style={{ textAlign: 'center' }}>{sumOfMonthlyInterviews} Interviews in Last 4 Weeks</h3>
                     <Bar
                         data={last4WeeksInterviews}
                         options={options}
@@ -371,14 +370,13 @@ export default function Dashboard({ currentUser }) {
                         padding: '20px',
                         width: '46%',
                         height: '36.8vh',
-                        backgroundColor: 'white',
                         borderRadius: '10px'
                     }
                 }
-                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'
+                    className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'
                 >
 
-                    <h3 className='font-semibold text-lg' style={{ textAlign: 'center' }}>New Connections</h3>
+                    <h3 className='font-semibold text-lg dark:text-white' style={{ textAlign: 'center' }}>New Connections</h3>
                     <button onClick={() => { setIsLastWeek(true) }} className="ml-4 inline-block px-6 py-2 bg-cyan-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-cyan-400 hover:shadow-lg focus:bg-cyan-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Added in last 7 days</button>
                     <button onClick={() => { setIsLastWeek(false) }} className="ml-2 mt-2 inline-block px-6 py-2 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out">Added in the Last Month</button>
                     <div className='mt-5 ml-3'>
@@ -386,8 +384,8 @@ export default function Dashboard({ currentUser }) {
                             (isLastWeek ? lastWeekConnections : lastMonthConnections).map((connection) => {
                                 return (
                                     <div style={{ display: 'flex', marginTop: '1vh' }}>
-                                        <p className='text-lg' style={{ paddingRight: 10 }}>{connection.name} ·</p>
-                                        <p className='text-lg'> {connection.company}</p>
+                                        <p className='text-lg dark:text-white' style={{ paddingRight: 10 }}>{connection.name} ·</p>
+                                        <p className='text-lg dark:text-white'> {connection.company}</p>
                                     </div>
                                 )
                             })
@@ -398,3 +396,35 @@ export default function Dashboard({ currentUser }) {
         </div>
     )
 }
+
+
+
+// const today = new Date();
+// const past7Days = new Date(today.getTime() - 6 * 24 * 60 * 60 * 1000);
+
+// const filteredApplications = applications.filter(application => {
+//     return (
+//         application.applied === true &&
+//         new Date(application.applied_date) >= past7Days
+//     );
+// });
+
+// const groupedApplications = filteredApplications.reduce((acc, application) => {
+//     const date = new Date(application.applied_date).toLocaleDateString('en-US', { timeZone: 'UTC' }); // convert date to string format
+//     if (!acc[date]) {
+//         acc[date] = [];
+//     }
+//     acc[date].push(application);
+//     return acc;
+// }, {});
+
+// const totalApplicationsPerDay = [];
+// for (let i = 6; i >= 0; i--) {
+//     const day = new Date(today.getTime() - i * 24 * 60 * 60 * 1000).toLocaleDateString('en-US', { timeZone: 'UTC' }); // get date string for each day
+//     const applications = groupedApplications[day] || [];
+//     totalApplicationsPerDay.push(applications.length);
+// }
+
+// console.log(groupedApplications)
+
+// console.log(totalApplicationsPerDay)

@@ -8,7 +8,7 @@ import LoggedOut from "./LoggedOut";
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
-  const [theme, setTheme] = useState("Light")
+  const [theme, setTheme] = useState("🌙")
 
   useEffect(() => {
     fetch("/me").then((res) => {
@@ -22,9 +22,9 @@ const App = () => {
   }, []);
 
   const handleThemeSwitch = () => {
-    setTheme(theme === "Dark" ? "Light" : "Dark");
+    setTheme(theme === "🌙" ? "🔆" : "🌙");
     console.log(theme)
-    if (theme === "Dark") {
+    if (theme === "🌙") {
       document.documentElement.classList.add("dark");
     } else {
       document.documentElement.classList.remove("dark");

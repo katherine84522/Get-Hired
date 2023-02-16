@@ -15,6 +15,7 @@ class ConnectionsController < ApplicationController
     def create
         begin
             options = Selenium::WebDriver::Chrome::Options.new
+            options.add_argument('--headless')
             driver = Selenium::WebDriver.for :chrome, options:options
             driver.get('https://www.linkedin.com/')
             email = driver.find_element(:xpath, '//*[@id="session_key"]')
@@ -43,7 +44,7 @@ class ConnectionsController < ApplicationController
             render json: connection
         rescue StandardError => e
             p e.message
-            connection = Connection.create(recruiter: params[:recruiter], name: "Michael", company:"Flatiron School", user_id: params[:user_id], contact: params[:contact], link: params[:link], position: "Instructor")
+            connection = Connection.create(recruiter: params[:recruiter], name: "Michael Law", company:"Vittles · Full-time", user_id: params[:user_id], contact: params[:contact], link: params[:link], position: "Founder/Software Engineer")
             render json: connection
         end
     end

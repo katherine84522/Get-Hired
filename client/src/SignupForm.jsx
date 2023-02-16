@@ -46,10 +46,14 @@ const SignupForm = ({ setCurrentUser, setIsAuthenticated }) => {
 
     return (
         <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', marginLeft: '28vw' }}>
-            <div style={{ marginTop: '30vh', marginLeft: '-10vw' }}>
+            <div style={{ marginTop: '30vh', marginLeft: '-8vw' }}>
                 <img src='./signuppic.png' style={{ width: '80%' }} />
             </div>
-            <div style={{ marginTop: '40vh', marginRight: '20vw', width: '40vw' }}>
+
+            <div style={{ marginTop: '30vh', marginRight: '20vw', width: '45vw' }}>
+                <div className='mb-20 ml-6'>
+                    <h2 className='font-semibold text-2xl dark:text-cyan-200'>Let's get you hired!</h2>
+                </div>
                 <form onSubmit={handleSubmit}  >
                     <div className='mb-4'>
                         <input

@@ -10,7 +10,7 @@ export default function ApplyForm({ handleApplied, setToday, setShowDate, handle
                         <div onClick={() => { setToday(false) }} style={{ backgroundColor: 'cyan', width: '7vw', textAlign: 'center', borderRadius: '10px', color: 'black' }}>Not Today</div>
                     </div>
                     {!today &&
-                        <input type="date" max={today1} value={futureDate} onChange={(e) => { handleDateChange(e) }} style={{ marginLeft: '5vw' }} />
+                        <input type="date" max={today1} value={futureDate} onChange={(e) => { handleDateChange(e) }} style={{ marginLeft: '5vw', color: 'black' }} />
                     }
                     <div style={{ display: 'flex', gap: '3vw', marginLeft: '5vw', marginTop: '2vh', marginBottom: '2vh', textDecoration: 'underline' }}>
                         <input type='submit' />

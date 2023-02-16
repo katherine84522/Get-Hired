@@ -7,3 +7,20 @@ body {
   min-height: 100%;
   height: 100%;
 }
+
+::-webkit-scrollbar {
+  width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(180deg, #FCE68A 0%, #A5F3FC 99%);
+  box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.3);
+  border-radius: 100px;
+}

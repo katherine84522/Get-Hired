@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginForm = ({ setCurrentUser, setIsAuthenticated }) => {
+const LoginForm = ({ setCurrentUser, setIsAuthenticated, theme }) => {
     const navigate = useNavigate()
 
     const [errorMsg, setErrorMsg] = useState(false)
@@ -42,7 +42,12 @@ const LoginForm = ({ setCurrentUser, setIsAuthenticated }) => {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh', justifyContent: 'center', flexGrow: 1 }}>
             <div style={{ marginLeft: '20vw', marginTop: '2vw' }}>
-                <img src='./welcomeback.png' style={{ width: '70%' }} />
+                {theme === '🌙' ?
+                    <img src='./welcomeback.png' style={{ width: '70%' }} />
+                    :
+                    <img src='./welcomebackblue.png' style={{ width: '50%', marginLeft: '5vw' }} />
+                }
+
             </div>
             < form onSubmit={handleSubmit} style={{ margin: 'auto' }}>
                 <div className='mb-6'>

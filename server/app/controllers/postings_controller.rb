@@ -1,7 +1,7 @@
 class PostingsController < ApplicationController
 
     def index
-        render json: Posting.all
+        render json: Posting.all.order("id DESC")
     end
 
     def show
@@ -10,7 +10,7 @@ class PostingsController < ApplicationController
     end
 
     def create
-        posting = Posting.create(job_title:params[:job_title], company:params[:company], location:params[:location], description:params[:description],link:params[:link], js: params[:js], python: params[:python], react:params[:react], ruby: params[:ruby], deleted: params[:deleted])
+        posting = Posting.create(job_title:params[:job_title], company:params[:company], location:params[:location], description:params[:description],link:params[:link], js: params[:js], python: params[:python], react:params[:react], ruby: params[:ruby])
         render json: posting
     end
 

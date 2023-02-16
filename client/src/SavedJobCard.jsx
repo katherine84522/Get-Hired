@@ -106,18 +106,20 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
 
 
     return (
-        <div style={{ display: 'flex', gap: '5vw', width: '40vw', height: '12vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-slate-800 dark:border-white dark:drop-shadow-white'>
-            <div style={{ marginTop: '2.5vh', marginLeft: '2vw', display: 'flex', flexDirection: 'column', gap: '1vw', width: '41%' }}>
+        <div style={{ display: 'flex', width: '40vw', height: '12vw' }} className='bg-white rounded-lg drop-shadow-lg border-amber-100 hover:border-cyan-200 border-4 dark:bg-stone-900 dark:border-2 dark:border-stone-800'>
+            <div style={{ marginTop: '2.5vh', marginLeft: '2vw', display: 'flex', flexDirection: 'column', gap: '1vw', width: '70%' }}>
                 <h2 className='text-2xl font-semibold dark:text-amber-300 '>{job.job_title}</h2>
                 <h3 className='font-semibold text-cyan-400 dark:text-white'>{job.company}</h3>
                 <p className='dark:text-white text-amber-500'>{job.location}</p>
             </div>
-            <div style={{ marginTop: '4vh' }}>
+            <div style={{ marginTop: '4vh', width: '100%' }}>
                 {connectionName !== null &&
-                    <p>Connection : {connectionName}</p>
+                    <div className='ml-24'>
+                        <p>Connection : {connectionName}</p>
+                    </div>
                 }
                 {!connectionName &&
-                    <button onClick={() => { setShowConnections(!showConnections) }} style={{ marginLeft: '8vw' }} className="inline-block px-8 py-2 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out" >Add referral</button>
+                    <button onClick={() => { setShowConnections(!showConnections) }} style={{ marginLeft: '8vw' }} className="inline-block px-8 py-2 mr-2 bg-amber-300 text-white font-medium text-xs leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out" >Add referral</button>
                 }
 
                 {showConnections &&
@@ -143,7 +145,7 @@ export default function SavedJobCard({ job, currentUser, setSavedJobs, setReferr
                     </div>
                 }
 
-                <button onClick={() => { setShowDate(!showDate) }} style={{ marginTop: '7vh', marginLeft: '8vw', width: '10vw', textDecoration: 'underline' }}>Mark as Applied</button>
+                <button onClick={() => { setShowDate(!showDate) }} style={{ marginTop: '7vh', marginLeft: '8vw', width: '10vw', textDecoration: 'underline' }} className='dark:text-cyan-200'>Mark as Applied</button>
             </div>
             {showDate &&
                 < ApplyForm handleApplied={handleApplied} today={today} setToday={setToday} setShowDate={setShowDate} handleDateChange={handleDateChange} today1={today1} futureDate={futureDate} />

@@ -48,6 +48,8 @@ export default function Connections({ currentUser }) {
         let res = await req.json()
         console.log(res)
         setWaiting(false)
+        setUrl('')
+        setContact('')
         setConnections([res, ...connections])
         console.log(connections)
 
@@ -104,7 +106,7 @@ export default function Connections({ currentUser }) {
     }
 
     return (
-        <div>
+        <div style={{ overflowY: 'scroll', paddingRight: '9.3vw' }}>
             <div style={{ display: 'flex' }}>
                 <div className='ml-12 mt-8'>
                     <h2 className=" font-semibold text-left text-4xl dark:text-white">My Network</h2>
@@ -113,7 +115,7 @@ export default function Connections({ currentUser }) {
                 <div style={{ display: 'flex', marginLeft: '15vw', gap: '3vw', marginTop: '2vw', marginBottom: '2vw' }}>
                     <button onClick={() => { setRecruiters(false) }} className="inline-block px-10 py-2 bg-amber-300 text-white font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-400 active:shadow-lg transition duration-150 ease-in-out">All</button>
                     <button onClick={() => { setRecruiters(true) }} className="inline-block px-10 py-2.5 bg-cyan-300 text-white font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-cyan-400 hover:shadow-lg focus:bg-cyan-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Recruiter</button>
-                    <button onClick={() => { setAddForm(!addForm) }} className="inline-block px-10 py-2.5 bg-white text-black font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-neutral-300 hover:shadow-lg focus:bg-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Add</button>
+                    <button onClick={() => { setAddForm(!addForm) }} className="text-cyan-500 inline-block px-10 py-2.5 bg-white text-black font-medium text-s leading-tight uppercase rounded-full shadow-md hover:bg-neutral-300 hover:shadow-lg focus:bg-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-cyan-400 active:shadow-lg transition duration-150 ease-in-out">Add</button>
                 </div>
             </div>
             {addForm &&
@@ -131,6 +133,7 @@ export default function Connections({ currentUser }) {
                                     <p onClick={() => { setAddForm(false) }} className='ml-8 mb-4 mt-5 text-white'>Close</p>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                     :
@@ -159,14 +162,16 @@ export default function Connections({ currentUser }) {
                 )
 
             }
-
-
             {waiting &&
-                <div>
-                    <p>Getting the info...</p>
+                <div style={{ position: 'fixed', zIndex: 1, height: '100%', width: '100%', top: 0, right: 0, left: 0, bottom: 0 }}>
+                    <div style={{ position: 'absolute', backgroundColor: 'rgb(8 145 178)', width: '25vw', minHeight: '10vh', marginLeft: '20vw', borderRadius: '10px', marginTop: '23%', marginLeft: '40vw' }}>
+                        <div className='ml-28 mt-6 text-white font-semibold'>
+                            <p>Getting the info...</p>
+                        </div>
+                    </div>
                 </div>
             }
-            <div className="mt-10" style={{ display: 'flex', flexDirection: 'column', gap: '3vw' }}>
+            <div className="mt-10" style={{ display: 'flex', flexDirection: 'column', gap: '3vw', paddingBottom: '6vh' }}>
                 {recruiters ?
                     (
                         filterRecruiters.map((connection) => {
