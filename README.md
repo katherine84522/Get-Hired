@@ -1,6 +1,9 @@
 # Get Hired
 **Get Hired** is a job applications, interviews, and connections tracking system. Not only that, but also a job board. Inspired by Katherine's job-hunting experience which she thought could be optimized in many ways.
 
+<div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/801823565?h=e255a26b08&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Get Hired.mp4"></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+
+
 ## Job Posting Feed
 - Postings are scraped from Linkedin and Indeed. The Python scraping script automatically runs everyday in the morning, and only get the newest postings that are posted the last 24 hours. 
 - While scraping, it also checks if one of these skills is mentioned: React, JavaScript, Ruby, and Python. If it is, then Get Hired will show the skill(s) mentioned on each posting info. If none of the skills is mentioned, then the Python script will not send a POST request to create the positng in the PostgreSQL database.
