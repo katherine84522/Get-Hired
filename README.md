@@ -1,8 +1,7 @@
 # Get Hired
 **Get Hired** is a job applications, interviews, and connections tracking system. Not only that, but also a job board. Inspired by Katherine's job-hunting experience which she thought could be optimized in many ways.
 
-<iframe src="https://vimeo.com/video/801823565" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-
+https://user-images.githubusercontent.com/115205162/221204488-bba8835a-1b01-40fb-b1a3-0729041e65f6.mp4
 
 ## Job Posting Feed
 - Postings are scraped from Linkedin and Indeed. The Python scraping script automatically runs everyday in the morning, and only get the newest postings that are posted the last 24 hours. 
