@@ -1,7 +1,7 @@
 # Get Hired
 **Get Hired** is a job applications, interviews, and connections tracking system. Not only that, but also a job board. Inspired by Katherine's job-hunting experience which she thought could be optimized in many ways.
 
-<iframe src="https://player.vimeo.com/video/801823565" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<iframe src="https://vimeo.com/video/801823565" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 
 
 ## Job Posting Feed
